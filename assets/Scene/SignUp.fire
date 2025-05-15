@@ -1632,7 +1632,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 8,
+    "maxLength": 30,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -2104,7 +2104,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 8,
+    "maxLength": 30,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -2576,7 +2576,7 @@
     "_enabled": true,
     "_string": "",
     "returnType": 0,
-    "maxLength": 8,
+    "maxLength": 30,
     "_tabIndex": 0,
     "editingDidBegan": [],
     "textChanged": [],
@@ -2651,6 +2651,7 @@
     "BackButton": {
       "__id__": 15
     },
+    "EnterButton": null,
     "_id": "99NZDCVmxK76hbDYVGeaSS"
   }
 ]
