@@ -14,16 +14,71 @@ export default class PlayerManager extends cc.Component {
     @property(cc.Node)
     background: cc.Node = null;
 
+    @property(cc.Node)
+    money: cc.Node = null;
+    @property(cc.Node)
+    life: cc.Node = null;
+    @property(cc.Node)
+    score: cc.Node = null;
+
     private moveDirection: PlayerDirection = PlayerDirection.NONE;
+
+    private moneyCount: number = 0;
+    private lifeCount: number = 5;
+    private scoreCount: number = 0;
 
     static sceneGravity(gravity: cc.Vec2 = cc.v2(0, -1000)) {
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().gravity = gravity;
     }
 
+    public addMoney(amount: number){
+        if(amount <= 0) return;
+        this.moneyCount += amount;
+        console.log(`add money: ${amount}, total money: ${this.money}`);
+        this.updateMoneyUI();
+    }
+
+    public removeLife(amount: number){
+        this.lifeCount -= amount;
+        console.log(`remove life: ${amount}, total life: ${this.lifeCount}`);
+        this.updateLifeUI();
+    }
+
+    public addScore(amount: number){
+        if(amount <= 0) return;
+        this.scoreCount += amount;
+        console.log(`add score: ${amount}, total score: ${this.scoreCount}`);
+        this.updateScoreUI();
+    }
+
+    private updateMoneyUI(){
+        if(!this.money) return;
+        this.money.getComponent(cc.Label).string = `${this.moneyCount}`;
+        console.log(`Current money: ${this.money}`);
+    }
+
+    private updateLifeUI(){
+        if(!this.life) return;
+        this.life.getComponent(cc.Label).string = `${this.lifeCount}`;
+        console.log(`Current life: ${this.life}`);
+    }
+
+    private updateScoreUI(){
+        if(!this.score) return;
+        const paddingScore = String(this.scoreCount).padStart(7, '0');
+        this.score.getComponent(cc.Label).string = paddingScore;
+        console.log(`Current score: ${this.score}`);
+    }
+
     // Life cycle methods
     onLoad() {
         PlayerManager.sceneGravity();
+
+        // Initialize player
+        this.updateMoneyUI();
+        this.updateLifeUI();
+        this.updateScoreUI();
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);

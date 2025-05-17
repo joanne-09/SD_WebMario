@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="1204" columns="43">
   <image source="../effects_UI_tiles/tileset.png" width="688" height="450"/>
  </tileset>
+ <tileset firstgid="1205" name="tiles2" tilewidth="16" tileheight="16" tilecount="1455" columns="97">
+  <image source="../effects_UI_tiles/tiles.png" width="1564" height="251"/>
+ </tileset>
  <layer id="1" name="圖塊層 1" width="200" height="50">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
