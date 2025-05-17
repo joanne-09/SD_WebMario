@@ -11,8 +11,6 @@ enum PlayerDirection {
 export default class PlayerManager extends cc.Component {
     @property(Player)
     player: Player = null;
-    @property(cc.Node)
-    background: cc.Node = null;
 
     @property(cc.Node)
     money: cc.Node = null;
@@ -35,7 +33,7 @@ export default class PlayerManager extends cc.Component {
     public addMoney(amount: number){
         if(amount <= 0) return;
         this.moneyCount += amount;
-        console.log(`add money: ${amount}, total money: ${this.money}`);
+        console.log(`add money: ${amount}, total money: ${this.moneyCount}`);
         this.updateMoneyUI();
     }
 
@@ -55,20 +53,20 @@ export default class PlayerManager extends cc.Component {
     private updateMoneyUI(){
         if(!this.money) return;
         this.money.getComponent(cc.Label).string = `${this.moneyCount}`;
-        console.log(`Current money: ${this.money}`);
+        console.log(`Current money: ${this.moneyCount}`);
     }
 
     private updateLifeUI(){
         if(!this.life) return;
         this.life.getComponent(cc.Label).string = `${this.lifeCount}`;
-        console.log(`Current life: ${this.life}`);
+        console.log(`Current life: ${this.lifeCount}`);
     }
 
     private updateScoreUI(){
         if(!this.score) return;
         const paddingScore = String(this.scoreCount).padStart(7, '0');
         this.score.getComponent(cc.Label).string = paddingScore;
-        console.log(`Current score: ${this.score}`);
+        console.log(`Current score: ${this.scoreCount}`);
     }
 
     // Life cycle methods
@@ -118,6 +116,10 @@ export default class PlayerManager extends cc.Component {
                 break;
         }
     }
+
+    // update(dt: number){
+    //     if(this.lifeCount <= 0) return;
+    // }
 
     onDestroy() {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);

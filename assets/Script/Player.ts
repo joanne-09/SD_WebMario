@@ -35,6 +35,40 @@ export default class Player extends cc.Component {
         this.moveDirection = moveDirection;
     }
 
+    // private getManager() {
+    //     return cc.find("Canvas").getComponent("PlayerManager");
+    // }
+
+    // private resetPlayer() {
+    //     const visibleSize = cc.view.getVisibleSize();
+    //     const halfWidth = visibleSize.width / 2;
+
+    //     if(this.node.x < 0 && this.node.x < -halfWidth) {
+    //         this.node.setPosition(this.node.x + 30, -35);
+    //     }else if(this.node.x > 0 && this.node.x > halfWidth) {
+    //         this.node.setPosition(this.node.x - 30, -35);
+    //     }else{
+    //         this.node.setPosition(this.node.x, -35);
+    //     }
+
+    //     if(this.rigidBody){
+    //         this.rigidBody.linearVelocity = cc.v2(0, 0);
+    //         this.rigidBody.angularVelocity = 0;
+    //     }
+    // }
+
+    // checkOutOfBound() {
+    //     const visibleSize = cc.view.getVisibleSize();
+    //     const halfWidth = visibleSize.width / 2;
+    //     const halfHeight = visibleSize.height / 2;
+
+    //     if (this.node.x < -halfWidth || this.node.x > halfWidth || this.node.y < -halfHeight || this.node.y > halfHeight) {
+    //         this.resetPlayer();
+    //         this.getManager().removeLife(1);
+    //         console.log("Player out of bounds");
+    //     }
+    // }
+
     // Life cycle methods
     onLoad() {
         this.rigidBody = this.node.getComponent(cc.RigidBody);
@@ -55,6 +89,8 @@ export default class Player extends cc.Component {
 
     update(dt: number) {
         if (!this.rigidBody) return;
+
+        // this.checkOutOfBound();
 
         // Horizontal movement
         let velocity = this.rigidBody.linearVelocity;
