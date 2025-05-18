@@ -31,6 +31,7 @@ export default class Player extends cc.Component {
     private playerState: PlayerState = PlayerState.SMALL;
 
     private moveLock: boolean = false;
+    private groundCnt: number = 0;
 
     playAnimation(animationName: string) {
         if(this.currentAnimation !== animationName) {
@@ -126,6 +127,7 @@ export default class Player extends cc.Component {
         const normal = contact.getWorldManifold().normal;
         if (this.onGround(otherCollider)) {
             if (normal.y < -0.9) {
+                this.groundCnt++;
                 this.isOnGround = true;
                 console.log("Player is on the ground");
             } else {
@@ -160,8 +162,14 @@ export default class Player extends cc.Component {
 
     onEndContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
         if (this.onGround(otherCollider)) {
-            this.isOnGround = false;
-            console.log("Player is not on the ground anymore");
+            this.groundCnt--;
+            if(this.groundCnt <= 0) {
+                this.isOnGround = false;
+                this.groundCnt = 0;
+                console.log("Player is not on the ground anymore");
+            }else{
+                console.log("Player is still on the ground, but different collider");
+            }
         }
     }
 
