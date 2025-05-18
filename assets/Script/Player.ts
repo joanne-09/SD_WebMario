@@ -55,6 +55,10 @@ export default class Player extends cc.Component {
         return collider.tag === 2 || collider.node.name === "Enemy";
     }
 
+    private isFlower(collider: cc.PhysicsCollider) {
+        return collider.node.name === "EnemyFlower";
+    }
+
     private isMushroom(collider: cc.PhysicsCollider) {
         return collider.tag === 4 || collider.node.name === "QuestionMushroom";
     }
@@ -84,6 +88,14 @@ export default class Player extends cc.Component {
         if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -400 || this.node.y >= 400) {
             this.getManager().removeLife(1);
             console.log("Player out of bounds");
+        }
+    }
+
+    affectByEnemy() {
+        if(this.playerState === PlayerState.SMALL){
+            this.getManager().removeLife(1);
+        }else{
+            this.becomeSmall();
         }
     }
 
@@ -122,12 +134,13 @@ export default class Player extends cc.Component {
                 this.getManager().addScore(500);
             }else{
                 // life is deducted
-                if(this.playerState === PlayerState.SMALL){
-                    this.getManager().removeLife(1);
-                    console.log("Player hit enemy from other sides");
-                }else{
-                    this.becomeSmall();
-                }
+                console.log("Player hit enemy from other sides");
+                this.affectByEnemy();
+            }
+        }else if(this.isFlower(otherCollider)){
+            if(normal.y < -0.9){
+                console.log("Player hit flower from above");
+                this.affectByEnemy();
             }
         }else if(this.isMushroom(otherCollider)){
             this.becomeBig();
