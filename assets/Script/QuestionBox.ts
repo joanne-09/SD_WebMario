@@ -6,9 +6,13 @@ export default class QuestionBox extends cc.Component {
     animation: cc.Animation = null;
     @property(cc.SpriteFrame)
     emptyBox: cc.SpriteFrame = null;
+    @property(cc.Boolean)
+    specialBox: boolean = false;
 
     @property(cc.Prefab)
     questionMoney: cc.Prefab = null;
+    @property(cc.Prefab)
+    questionMushroom: cc.Prefab = null;
 
     private readonly boxMoney: number = 10;
 
@@ -33,6 +37,20 @@ export default class QuestionBox extends cc.Component {
         return manager;
     }
 
+    private checkAdjacentBox(){
+        let count = 0;
+
+        for(const sibling of this.node.parent.children){
+            if(sibling === this.node) continue;
+
+            const siblingNode = sibling.getComponent(QuestionBox);
+            if(siblingNode.node.y === this.node.y && siblingNode.node.x < this.node.x){
+                count++;
+            }
+        }
+        return count;
+    }
+
     private spawnMoney() {
         if(!this.questionMoney) return;
 
@@ -54,6 +72,37 @@ export default class QuestionBox extends cc.Component {
         console.log("Spawned money");
     }
 
+    private spawnMushroom() {
+        if(!this.questionMushroom) return;
+
+        const cnt = this.checkAdjacentBox();
+        const moveX = (cnt+1) * this.node.width;
+        const moveTime = moveX / 50;
+
+        const mushroomNode = cc.instantiate(this.questionMushroom);
+        const mushroomRigidBody = mushroomNode.getComponent(cc.RigidBody);
+        this.node.parent.addChild(mushroomNode);
+
+        // Initialize the speed of the node
+        mushroomRigidBody.gravityScale = 0;
+        mushroomRigidBody.linearVelocity = cc.v2(0, 0);
+
+        const height = this.node.height / 2 + mushroomNode.height / 2;
+        mushroomNode.setPosition(this.node.x, this.node.y);
+
+        cc.tween(mushroomNode)
+            .by(0.4, {position: cc.v3(0, height, 0)}, {easing: 'cubicOut'})
+            .delay(1.0)
+            .by(moveTime, {position: cc.v3(-moveX, 0, 0)}, {easing: 'cubicOut'})
+            .call(() => {
+                mushroomRigidBody.gravityScale = 1;
+                mushroomRigidBody.linearVelocity = cc.v2(0, -100);
+            })
+            .start();
+
+        console.log("Spawned mushroom");
+    }
+
     // Life cycle methods
     onLoad() {
         this.playAnimation();
@@ -64,13 +113,19 @@ export default class QuestionBox extends cc.Component {
 
         const normal = contact.getWorldManifold().normal;
         if(otherCollider.node.name === "Player" && normal.y < -0.9){
-            this.getManager().addMoney(this.boxMoney);
             this.isEmpty = true;
             this.playAnimation();
-            this.spawnMoney();
-            console.log("Player hit the question box");
+
+            if(this.specialBox){
+                this.spawnMushroom();
+                console.log("Player hit the special question box");
+            }else{
+                this.getManager().addMoney(this.boxMoney);
+                this.spawnMoney();
+                console.log("Player hit the normal question box");
+            }
         }else{
-            console.log("Player hit the question box but not from above");
+            console.log("Player hit the question box but not from below");
         }
     }
 }
