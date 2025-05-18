@@ -8,6 +8,9 @@ enum PlayerDirection {
 
 @ccclass("Player")
 export default class Player extends cc.Component {
+    @property(cc.Node)
+    background: cc.Node = null;
+
     @property(cc.Float)
     moveSpeed: number = 200;
     @property(cc.Float)
@@ -24,6 +27,8 @@ export default class Player extends cc.Component {
     private rigidBody: cc.RigidBody = null;
     private moveDirection: PlayerDirection = PlayerDirection.NONE;
 
+    private moveLock: boolean = false;
+
     playAnimation(animationName: string) {
         if(this.currentAnimation !== animationName) {
             this.animation.play(animationName);
@@ -35,39 +40,33 @@ export default class Player extends cc.Component {
         this.moveDirection = moveDirection;
     }
 
-    // private getManager() {
-    //     return cc.find("Canvas").getComponent("PlayerManager");
-    // }
+    private getManager() {
+        return cc.find("Canvas").getComponent("PlayerManager");
+    }
 
-    // private resetPlayer() {
-    //     const visibleSize = cc.view.getVisibleSize();
-    //     const halfWidth = visibleSize.width / 2;
+    private resetPlayer() {
+        if(this.node.x <= -480) {
+            this.node.setPosition(this.node.x + 30, -35);
+        }else if(this.node.x >= (3200-480)) {
+            this.node.setPosition(this.node.x - 30, -35);
+        }else{
+            this.node.setPosition(this.node.x, -35);
+        }
 
-    //     if(this.node.x < 0 && this.node.x < -halfWidth) {
-    //         this.node.setPosition(this.node.x + 30, -35);
-    //     }else if(this.node.x > 0 && this.node.x > halfWidth) {
-    //         this.node.setPosition(this.node.x - 30, -35);
-    //     }else{
-    //         this.node.setPosition(this.node.x, -35);
-    //     }
+        if(this.rigidBody){
+            this.rigidBody.linearVelocity = cc.v2(0, 0);
+            this.rigidBody.angularVelocity = 0;
+        }
+        this.moveLock = true;
+    }
 
-    //     if(this.rigidBody){
-    //         this.rigidBody.linearVelocity = cc.v2(0, 0);
-    //         this.rigidBody.angularVelocity = 0;
-    //     }
-    // }
-
-    // checkOutOfBound() {
-    //     const visibleSize = cc.view.getVisibleSize();
-    //     const halfWidth = visibleSize.width / 2;
-    //     const halfHeight = visibleSize.height / 2;
-
-    //     if (this.node.x < -halfWidth || this.node.x > halfWidth || this.node.y < -halfHeight || this.node.y > halfHeight) {
-    //         this.resetPlayer();
-    //         this.getManager().removeLife(1);
-    //         console.log("Player out of bounds");
-    //     }
-    // }
+    checkOutOfBound() {
+        if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -400 || this.node.y >= 400) {
+            this.resetPlayer();
+            this.getManager().removeLife(1);
+            console.log("Player out of bounds");
+        }
+    }
 
     // Life cycle methods
     onLoad() {
@@ -90,17 +89,26 @@ export default class Player extends cc.Component {
     update(dt: number) {
         if (!this.rigidBody) return;
 
-        // this.checkOutOfBound();
+        this.checkOutOfBound();
 
         // Horizontal movement
         let velocity = this.rigidBody.linearVelocity;
         if (this.moveDirection === PlayerDirection.LEFT) {
-            velocity.x = -this.moveSpeed;
+            if (this.moveLock){
+                velocity.x = 0;
+            }else{
+                velocity.x = -this.moveSpeed;
+            }
             this.node.scaleX = -1;
         } else if (this.moveDirection === PlayerDirection.RIGHT) {
-            velocity.x = this.moveSpeed;
+            if(this.moveLock){
+                velocity.x = 0;
+            }else{
+                velocity.x = this.moveSpeed;
+            }
             this.node.scaleX = 1;
         } else {
+            this.moveLock = false;
             velocity.x = 0;
         }
 

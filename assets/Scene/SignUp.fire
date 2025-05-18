@@ -2651,7 +2651,18 @@
     "BackButton": {
       "__id__": 15
     },
-    "EnterButton": null,
+    "EnterButton": {
+      "__id__": 22
+    },
+    "emailInput": {
+      "__id__": 33
+    },
+    "usernameInput": {
+      "__id__": 44
+    },
+    "passwordInput": {
+      "__id__": 55
+    },
     "_id": "99NZDCVmxK76hbDYVGeaSS"
   }
 ]
