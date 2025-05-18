@@ -40,7 +40,7 @@ export default class PlayerManager extends cc.Component {
     public removeLife(amount: number){
         this.lifeCount -= amount;
         console.log(`remove life: ${amount}, total life: ${this.lifeCount}`);
-        this.updateLifeUI();
+        this.handleRestart();
     }
 
     public addScore(amount: number){
@@ -69,12 +69,40 @@ export default class PlayerManager extends cc.Component {
         console.log(`Current score: ${this.scoreCount}`);
     }
 
+    private handleRestart() {
+        console.log("Save data and return to GameStart scene");
+
+        cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
+        cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
+        cc.sys.localStorage.setItem("playerScore", this.scoreCount.toString());
+
+        if(this.player && this.player.isValid){
+            const playerRigidBody = this.player.getComponent(cc.RigidBody);
+            playerRigidBody.linearVelocity = cc.v2(0, 0);
+            this.player.enabled = false;
+        }
+
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
+        cc.director.loadScene("GameStart");
+    }
+
+    private reloadScene() {
+        this.moneyCount = parseInt(cc.sys.localStorage.getItem("playerMoney")) || 0;
+        this.lifeCount = parseInt(cc.sys.localStorage.getItem("playerLife")) || 5;
+        this.scoreCount = parseInt(cc.sys.localStorage.getItem("playerScore")) || 0;
+    }
+
     // Life cycle methods
     onLoad() {
         PlayerManager.sceneGravity();
+        this.reloadScene();
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
+
     }
 
     start(){

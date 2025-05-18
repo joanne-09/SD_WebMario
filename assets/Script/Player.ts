@@ -47,22 +47,6 @@ export default class Player extends cc.Component {
         return cc.find("Canvas").getComponent("PlayerManager");
     }
 
-    private resetPlayer() {
-        if(this.node.x <= -480) {
-            this.node.setPosition(this.node.x + 30, -35);
-        }else if(this.node.x >= (3200-480)) {
-            this.node.setPosition(this.node.x - 30, -35);
-        }else{
-            this.node.setPosition(this.node.x, -35);
-        }
-
-        if(this.rigidBody){
-            this.rigidBody.linearVelocity = cc.v2(0, 0);
-            this.rigidBody.angularVelocity = 0;
-        }
-        this.moveLock = true;
-    }
-
     private onGround(collider: cc.PhysicsCollider) {
         return collider.tag === 1 || collider.node.name === "Background";
     }
@@ -98,7 +82,6 @@ export default class Player extends cc.Component {
 
     checkOutOfBound() {
         if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -400 || this.node.y >= 400) {
-            this.resetPlayer();
             this.getManager().removeLife(1);
             console.log("Player out of bounds");
         }
@@ -137,6 +120,14 @@ export default class Player extends cc.Component {
                 console.log("Player hit enemy from above");
                 enemy.getHit();
                 this.getManager().addScore(500);
+            }else{
+                // life is deducted
+                if(this.playerState === PlayerState.SMALL){
+                    this.getManager().removeLife(1);
+                    console.log("Player hit enemy from other sides");
+                }else{
+                    this.becomeSmall();
+                }
             }
         }else if(this.isMushroom(otherCollider)){
             this.becomeBig();
