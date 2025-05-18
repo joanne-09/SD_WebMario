@@ -61,6 +61,10 @@ export default class Player extends cc.Component {
         return collider.tag === 1 || collider.node.name === "Background";
     }
 
+    private isEnemy(collider: cc.PhysicsCollider) {
+        return collider.tag === 2 || collider.node.name === "Enemy";
+    }
+
     checkOutOfBound() {
         if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -400 || this.node.y >= 400) {
             this.resetPlayer();
@@ -95,6 +99,13 @@ export default class Player extends cc.Component {
                 console.log("Player is on the ground");
             } else {
                 console.log("Player is on the ground but not on the floor");
+            }
+        }else if(this.isEnemy(otherCollider)){
+            const enemy = otherCollider.node.getComponent("Enemy");
+            if(normal.y < -0.9 && enemy){
+                console.log("Player hit enemy from above");
+                enemy.getHit();
+                this.getManager().addScore(500);
             }
         }
     }

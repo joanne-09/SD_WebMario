@@ -14,6 +14,8 @@ export default class Enemy extends cc.Component {
     private moveDirection: number = 1; // 1 for right, -1 for left
     private rigidBody: cc.RigidBody = null;
 
+    private hasBeenHit: boolean = false;
+
     private turnAround() {
         this.moveDirection *= -1;
         this.node.scaleX *= -1;
@@ -21,6 +23,13 @@ export default class Enemy extends cc.Component {
 
     private isFloor(collider: cc.PhysicsCollider) {
         return collider.tag === 1 || collider.node.name === "Background";
+    }
+
+    public getHit(){
+        if(this.hasBeenHit) return;
+        this.hasBeenHit = true;
+
+        this.node.destroy();
     }
 
     // Life cycle methods
@@ -51,7 +60,6 @@ export default class Enemy extends cc.Component {
     }
 
     onBeginContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
-        
         if(this.isFloor(otherCollider)) {
             const normal = contact.getWorldManifold().normal;
             if(this.moveDirection === 1 && normal.x > 0.7){
