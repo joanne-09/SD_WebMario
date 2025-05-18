@@ -7,7 +7,10 @@ export default class QuestionBox extends cc.Component {
     @property(cc.SpriteFrame)
     emptyBox: cc.SpriteFrame = null;
 
-    private boxMoney: number = 10;
+    @property(cc.Prefab)
+    questionMoney: cc.Prefab = null;
+
+    private readonly boxMoney: number = 10;
 
     private isEmpty: boolean = false;
 
@@ -30,6 +33,27 @@ export default class QuestionBox extends cc.Component {
         return manager;
     }
 
+    private spawnMoney() {
+        if(!this.questionMoney) return;
+
+        const moneyNode = cc.instantiate(this.questionMoney);
+        this.node.parent.addChild(moneyNode);
+
+        const yOffset = this.node.height / 2;
+        moneyNode.setPosition(this.node.x, this.node.y + yOffset);
+
+        cc.tween(moneyNode)
+            .by(0.3, {position: cc.v3(0, 30, 0)}, {easing: 'cubicOut'})
+            .delay(0.1)
+            .by(0.3, {position: cc.v3(0, -30 + yOffset, 0)}, {easing: 'cubicIn'})
+            .call(() => {
+                moneyNode.destroy();
+            })
+            .start();
+
+        console.log("Spawned money");
+    }
+
     // Life cycle methods
     onLoad() {
         this.playAnimation();
@@ -43,6 +67,7 @@ export default class QuestionBox extends cc.Component {
             this.getManager().addMoney(this.boxMoney);
             this.isEmpty = true;
             this.playAnimation();
+            this.spawnMoney();
             console.log("Player hit the question box");
         }else{
             console.log("Player hit the question box but not from above");

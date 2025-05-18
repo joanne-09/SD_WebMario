@@ -8,9 +8,6 @@ enum PlayerDirection {
 
 @ccclass("Player")
 export default class Player extends cc.Component {
-    @property(cc.Node)
-    background: cc.Node = null;
-
     @property(cc.Float)
     moveSpeed: number = 200;
     @property(cc.Float)

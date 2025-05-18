@@ -609,7 +609,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1108.843,
+        1120,
         0,
         0,
         0,
@@ -837,12 +837,12 @@
       {
         "__type__": "cc.Vec2",
         "x": 1248,
-        "y": -500
+        "y": -490
       },
       {
         "__type__": "cc.Vec2",
         "x": 1200,
-        "y": -500
+        "y": -490
       },
       {
         "__type__": "cc.Vec2",
@@ -877,12 +877,12 @@
       {
         "__type__": "cc.Vec2",
         "x": 496,
-        "y": -500
+        "y": -490
       },
       {
         "__type__": "cc.Vec2",
         "x": 464,
-        "y": -500
+        "y": -490
       },
       {
         "__type__": "cc.Vec2",
@@ -927,12 +927,12 @@
       {
         "__type__": "cc.Vec2",
         "x": -1072,
-        "y": -500
+        "y": -490
       },
       {
         "__type__": "cc.Vec2",
-        "x": -1119.4,
-        "y": -500
+        "x": -1120,
+        "y": -490
       },
       {
         "__type__": "cc.Vec2",
@@ -2177,6 +2177,9 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
+    "questionMoney": {
+      "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
+    },
     "_id": "33BEJoerpE8YiL7pHPHHm5"
   },
   {
@@ -2384,6 +2387,9 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
+    "questionMoney": {
+      "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
+    },
     "_id": "85GEhprl1NTq9tPFsLHvIm"
   },
   {
@@ -2499,8 +2505,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        951.447,
-        41.383,
+        999.425,
+        63.527,
         0,
         0,
         0,
@@ -2590,6 +2596,9 @@
     },
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
+    },
+    "questionMoney": {
+      "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "_id": "baxPKEohNArIveSXpQImUT"
   },
@@ -2798,6 +2807,9 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
+    "questionMoney": {
+      "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
+    },
     "_id": "c6RbK0JdJK4p64rQmof1RM"
   },
   {
@@ -3004,6 +3016,9 @@
     },
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
+    },
+    "questionMoney": {
+      "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "_id": "cfxJajIKhOmYX9VFU5viVT"
   },
