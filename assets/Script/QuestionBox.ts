@@ -76,7 +76,7 @@ export default class QuestionBox extends cc.Component {
         if(!this.questionMushroom) return;
 
         const cnt = this.checkAdjacentBox();
-        const moveX = (cnt+1) * this.node.width;
+        const moveX = (cnt+1) * this.node.width + 10;
         const moveTime = moveX / 50;
 
         const mushroomNode = cc.instantiate(this.questionMushroom);
@@ -88,7 +88,7 @@ export default class QuestionBox extends cc.Component {
         mushroomRigidBody.linearVelocity = cc.v2(0, 0);
 
         const height = this.node.height / 2 + mushroomNode.height / 2;
-        mushroomNode.setPosition(this.node.x, this.node.y);
+        mushroomNode.setPosition(this.node.x, this.node.y + 5);
 
         cc.tween(mushroomNode)
             .by(0.4, {position: cc.v3(0, height, 0)}, {easing: 'cubicOut'})

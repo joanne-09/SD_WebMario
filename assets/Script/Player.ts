@@ -6,6 +6,11 @@ enum PlayerDirection {
     RIGHT,
 }
 
+enum PlayerState {
+    SMALL,
+    BIG,
+}
+
 @ccclass("Player")
 export default class Player extends cc.Component {
     @property(cc.Float)
@@ -23,6 +28,7 @@ export default class Player extends cc.Component {
 
     private rigidBody: cc.RigidBody = null;
     private moveDirection: PlayerDirection = PlayerDirection.NONE;
+    private playerState: PlayerState = PlayerState.SMALL;
 
     private moveLock: boolean = false;
 
@@ -63,6 +69,31 @@ export default class Player extends cc.Component {
 
     private isEnemy(collider: cc.PhysicsCollider) {
         return collider.tag === 2 || collider.node.name === "Enemy";
+    }
+
+    private isMushroom(collider: cc.PhysicsCollider) {
+        return collider.tag === 4 || collider.node.name === "QuestionMushroom";
+    }
+
+    private becomeBig() {
+        if(this.playerState === PlayerState.SMALL) {
+            this.playerState = PlayerState.BIG;
+            this.node.setScale(1.5, 1.5);
+            console.log("Player become big");
+        }else if(this.playerState === PlayerState.BIG) {
+            console.log("Player is already big");
+            this.getManager().addScore(1000);
+        }
+    }
+
+    private becomeSmall() {
+        if(this.playerState === PlayerState.BIG) {
+            this.playerState = PlayerState.SMALL;
+            this.node.setScale(1, 1);
+            console.log("Player become small");
+        }else if(this.playerState === PlayerState.SMALL) {
+            console.log("Player is already small");
+        }
     }
 
     checkOutOfBound() {
@@ -107,6 +138,9 @@ export default class Player extends cc.Component {
                 enemy.getHit();
                 this.getManager().addScore(500);
             }
+        }else if(this.isMushroom(otherCollider)){
+            this.becomeBig();
+            otherCollider.node.destroy();
         }
     }
 
