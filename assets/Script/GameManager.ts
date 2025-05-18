@@ -7,8 +7,8 @@ enum PlayerDirection {
     RIGHT,
 }
 
-@ccclass("PlayerManager")
-export default class PlayerManager extends cc.Component {
+@ccclass("GameManager")
+export default class GameManager extends cc.Component {
     @property(Player)
     player: Player = null;
 
@@ -18,12 +18,15 @@ export default class PlayerManager extends cc.Component {
     life: cc.Label = null;
     @property(cc.Label)
     score: cc.Label = null;
+    @property(cc.Label)
+    time: cc.Label = null;
 
     private moveDirection: PlayerDirection = PlayerDirection.NONE;
 
     private moneyCount: number = 0;
     private lifeCount: number = 5;
     private scoreCount: number = 0;
+    private timeCount: number = 300;
 
     static sceneGravity(gravity: cc.Vec2 = cc.v2(0, -1280)) {
         cc.director.getPhysicsManager().enabled = true;
@@ -40,7 +43,11 @@ export default class PlayerManager extends cc.Component {
     public removeLife(amount: number){
         this.lifeCount -= amount;
         console.log(`remove life: ${amount}, total life: ${this.lifeCount}`);
-        this.handleRestart();
+        if(this.lifeCount <= 0){
+            this.handleGameover();
+        }else{
+            this.handleRestart();
+        }
     }
 
     public addScore(amount: number){
@@ -48,6 +55,16 @@ export default class PlayerManager extends cc.Component {
         this.scoreCount += amount;
         console.log(`add score: ${amount}, total score: ${this.scoreCount}`);
         this.updateScoreUI();
+    }
+
+    private timer(){
+        if(this.timeCount <= 0){
+            this.removeLife(1);
+            return;
+        }
+        this.timeCount -= 1;
+        console.log(`Current time: ${this.timeCount}`);
+        this.updateTimeUI();
     }
 
     private updateMoneyUI(){
@@ -69,8 +86,39 @@ export default class PlayerManager extends cc.Component {
         console.log(`Current score: ${this.scoreCount}`);
     }
 
+    private updateTimeUI(){
+        if(!this.time) return;
+        this.time.string = `${this.timeCount}`;
+        console.log(`Current time: ${this.timeCount}`);
+    }
+
+    private handleGameWin(){
+        console.log("Player wins the game");
+    }
+
+    private handleGameover(){
+        console.log("Player loses the game");
+
+        this.unschedule(this.timer);
+        cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
+        cc.sys.localStorage.setItem("playerScore", this.scoreCount.toString());
+
+        if(this.player && this.player.isValid){
+            const playerRigidBody = this.player.getComponent(cc.RigidBody);
+            playerRigidBody.linearVelocity = cc.v2(0, 0);
+            this.player.enabled = false;
+        }
+
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
+        cc.director.loadScene("Menu");
+    }
+
     private handleRestart() {
         console.log("Save data and return to GameStart scene");
+
+        this.unschedule(this.timer);
 
         cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
         cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
@@ -92,17 +140,16 @@ export default class PlayerManager extends cc.Component {
         this.moneyCount = parseInt(cc.sys.localStorage.getItem("playerMoney")) || 0;
         this.lifeCount = parseInt(cc.sys.localStorage.getItem("playerLife")) || 5;
         this.scoreCount = parseInt(cc.sys.localStorage.getItem("playerScore")) || 0;
+        this.timeCount = 300;
     }
 
     // Life cycle methods
     onLoad() {
-        PlayerManager.sceneGravity();
+        GameManager.sceneGravity();
         this.reloadScene();
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-
-
     }
 
     start(){
@@ -110,6 +157,9 @@ export default class PlayerManager extends cc.Component {
         this.updateMoneyUI();
         this.updateLifeUI();
         this.updateScoreUI();
+        this.updateTimeUI();
+
+        this.schedule(this.timer, 1.0);
     }
 
     onKeyDown(event: cc.Event.EventKeyboard) {

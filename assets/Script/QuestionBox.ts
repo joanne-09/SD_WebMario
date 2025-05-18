@@ -29,7 +29,7 @@ export default class QuestionBox extends cc.Component {
     }
 
     private getManager(){
-        const manager = cc.find("Canvas").getComponent("PlayerManager");
+        const manager = cc.find("Canvas").getComponent("GameManager");
         if(!manager){
             cc.error("PlayerManager not found");
             return null;

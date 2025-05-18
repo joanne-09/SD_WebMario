@@ -44,7 +44,7 @@ export default class Player extends cc.Component {
     }
 
     private getManager() {
-        return cc.find("Canvas").getComponent("PlayerManager");
+        return cc.find("Canvas").getComponent("GameManager");
     }
 
     private onGround(collider: cc.PhysicsCollider) {
