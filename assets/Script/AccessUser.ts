@@ -1,5 +1,14 @@
 const {ccclass, property} = cc._decorator;
 
+export interface UserData {
+    email: string;
+    username: string;
+    highscore?: number;
+    userlife?: number;
+    usermoney?: number;
+    userlevel?: number;
+}
+
 export default class AccessUser extends cc.Component {
     private static _instance: AccessUser = null;
 

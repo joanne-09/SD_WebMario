@@ -48,7 +48,8 @@ export default class Player extends cc.Component {
     }
 
     private onGround(collider: cc.PhysicsCollider) {
-        return collider.tag === 1 || collider.node.name === "Background";
+        // if standing on Question box or Background
+        return collider.tag === 10 || collider.node.name === "Background";
     }
 
     private isEnemy(collider: cc.PhysicsCollider) {
@@ -61,6 +62,10 @@ export default class Player extends cc.Component {
 
     private isMushroom(collider: cc.PhysicsCollider) {
         return collider.tag === 4 || collider.node.name === "QuestionMushroom";
+    }
+
+    private isWinner(collider: cc.PhysicsCollider) {
+        return collider.node.name === "Winner";
     }
 
     private becomeBig() {
@@ -145,6 +150,11 @@ export default class Player extends cc.Component {
         }else if(this.isMushroom(otherCollider)){
             this.becomeBig();
             otherCollider.node.destroy();
+        }else if(this.isWinner(otherCollider)){
+            const winner = otherCollider.node.getComponent("Winner");
+            this.node.x = winner.node.x;
+            console.log("Player hit winner");
+            this.getManager().handleGameWin();
         }
     }
 

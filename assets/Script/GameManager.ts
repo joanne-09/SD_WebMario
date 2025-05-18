@@ -89,19 +89,18 @@ export default class GameManager extends cc.Component {
     private updateTimeUI(){
         if(!this.time) return;
         this.time.string = `${this.timeCount}`;
-        console.log(`Current time: ${this.timeCount}`);
+        // console.log(`Current time: ${this.timeCount}`);
     }
 
-    private handleGameWin(){
+    public handleGameWin(){
         console.log("Player wins the game");
-    }
 
-    private handleGameover(){
-        console.log("Player loses the game");
+        this.addScore(5000);
 
         this.unschedule(this.timer);
         cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
         cc.sys.localStorage.setItem("playerScore", this.scoreCount.toString());
+        cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
 
         if(this.player && this.player.isValid){
             const playerRigidBody = this.player.getComponent(cc.RigidBody);
@@ -112,7 +111,30 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
-        cc.director.loadScene("Menu");
+        this.scheduleOnce(
+            cc.director.loadScene.bind(cc.director, "Menu"),
+            3.0, // Delay for 3 seconds
+        );
+    }
+
+    private handleGameover(){
+        console.log("Player loses the game");
+
+        this.unschedule(this.timer);
+        cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
+        cc.sys.localStorage.setItem("playerScore", this.scoreCount.toString());
+        cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
+
+        if(this.player && this.player.isValid){
+            const playerRigidBody = this.player.getComponent(cc.RigidBody);
+            playerRigidBody.linearVelocity = cc.v2(0, 0);
+            this.player.enabled = false;
+        }
+
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
+        cc.director.loadScene("Gameover");
     }
 
     private handleRestart() {
