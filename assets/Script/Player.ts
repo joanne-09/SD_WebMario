@@ -57,6 +57,10 @@ export default class Player extends cc.Component {
         this.moveLock = true;
     }
 
+    private onGround(collider: cc.PhysicsCollider) {
+        return collider.tag === 1 || collider.node.name === "Background";
+    }
+
     checkOutOfBound() {
         if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -400 || this.node.y >= 400) {
             this.resetPlayer();
@@ -80,6 +84,25 @@ export default class Player extends cc.Component {
             cc.error("Player component must have an Animation component.");
             this.enabled = false;
             return;
+        }
+    }
+
+    onBeginContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
+        const normal = contact.getWorldManifold().normal;
+        if (this.onGround(otherCollider)) {
+            if (normal.y < -0.9) {
+                this.isOnGround = true;
+                console.log("Player is on the ground");
+            } else {
+                console.log("Player is on the ground but not on the floor");
+            }
+        }
+    }
+
+    onEndContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
+        if (this.onGround(otherCollider)) {
+            this.isOnGround = false;
+            console.log("Player is not on the ground anymore");
         }
     }
 
