@@ -160,7 +160,7 @@ export default class Player extends cc.Component {
 
             this.scheduleOnce(() => {
                 this.playerState = PlayerState.SMALL;
-                this.node.getComponent(cc.PhysicsBoxCollider).size = cc.size(16, 16);
+                this.node.getComponent(cc.PhysicsBoxCollider).size = cc.size(13, 16);
                 this.node.getComponent(cc.PhysicsBoxCollider).apply();
             }, 1.0);
             console.log("Player become small");
