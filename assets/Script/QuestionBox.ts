@@ -76,7 +76,7 @@ export default class QuestionBox extends cc.Component {
         if(!this.questionMushroom) return;
 
         const cnt = this.checkAdjacentBox();
-        const moveX = (cnt+1) * (this.node.width) * 1.5 + 10;
+        const moveX = (cnt+1) * (this.node.width) * 1.5 + 20;
         const moveTime = moveX / 50;
 
         const mushroomNode = cc.instantiate(this.questionMushroom);

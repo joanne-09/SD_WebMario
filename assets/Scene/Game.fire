@@ -4458,9 +4458,12 @@
     "_clips": [
       {
         "__uuid__": "03439862-a172-44c0-94ff-2ab1fa3928d3"
+      },
+      {
+        "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_id": "15Gl3w8K1Au70cpCzfg/an"
   },
   {
@@ -4473,6 +4476,10 @@
     "_enabled": true,
     "moveSpeed": 60,
     "moveRange": 300,
+    "animation": {
+      "__id__": 119
+    },
+    "hasBeenHit": false,
     "_id": "67wUsohjVIRKO+/NvW6mqR"
   },
   {
@@ -4661,9 +4668,12 @@
     "_clips": [
       {
         "__uuid__": "03439862-a172-44c0-94ff-2ab1fa3928d3"
+      },
+      {
+        "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_id": "e60rpHvkpGKrTj7KLUsomG"
   },
   {
@@ -4676,6 +4686,10 @@
     "_enabled": true,
     "moveSpeed": 60,
     "moveRange": 50,
+    "animation": {
+      "__id__": 126
+    },
+    "hasBeenHit": false,
     "_id": "e6539focVHHJ2ZP0NJM3dy"
   },
   {
@@ -4864,9 +4878,12 @@
     "_clips": [
       {
         "__uuid__": "03439862-a172-44c0-94ff-2ab1fa3928d3"
+      },
+      {
+        "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_id": "960Ta4pVhDioahwvNNYNzm"
   },
   {
@@ -4879,6 +4896,10 @@
     "_enabled": true,
     "moveSpeed": 60,
     "moveRange": 100,
+    "animation": {
+      "__id__": 133
+    },
+    "hasBeenHit": false,
     "_id": "9epTD8n1BGULDGo9eb5vuQ"
   },
   {

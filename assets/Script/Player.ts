@@ -220,12 +220,14 @@ export default class Player extends cc.Component {
             const enemy = otherCollider.node.getComponent("Enemy");
             if(normal.y < -0.9 && enemy){
                 console.log("Player hit enemy from above");
-                enemy.getHit();
-                this.getManager().addScore(500);
+                if(!enemy.hasBeenHit){
+                    enemy.getHit();
+                    this.getManager().addScore(500);
+                }
             }else{
-                // life is deducted
+                // life is deducted or it has already been hit
                 console.log("Player hit enemy from other sides");
-                this.affectByEnemy();
+                if(!enemy.hasBeenHit) this.affectByEnemy();
             }
         }else if(this.isFlower(otherCollider)){
             if(normal.y < -0.9){

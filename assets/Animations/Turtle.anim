@@ -3,7 +3,7 @@
   "_name": "Turtle",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.5166666666666667,
+  "_duration": 0.6833333333333333,
   "sample": 60,
   "speed": 1,
   "wrapMode": 2,
@@ -18,9 +18,15 @@
             }
           },
           {
-            "frame": 0.5,
+            "frame": 0.3333333333333333,
             "value": {
               "__uuid__": "8c0e1480-f360-4ca6-bfe0-c74a979ea4bb"
+            }
+          },
+          {
+            "frame": 0.6666666666666666,
+            "value": {
+              "__uuid__": "94c12a07-18f0-4578-896e-b9bc266df753"
             }
           }
         ]

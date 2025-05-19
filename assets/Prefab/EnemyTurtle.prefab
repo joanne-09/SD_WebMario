@@ -60,8 +60,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        1848.754,
-        -131.049,
+        302.94,
+        171.242,
         0,
         0,
         0,
@@ -184,6 +184,9 @@
     "_clips": [
       {
         "__uuid__": "03439862-a172-44c0-94ff-2ab1fa3928d3"
+      },
+      {
+        "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
     "playOnLoad": true,
@@ -198,7 +201,11 @@
     },
     "_enabled": true,
     "moveSpeed": 60,
-    "moveRange": 100,
+    "moveRange": 50,
+    "animation": {
+      "__id__": 5
+    },
+    "hasBeenHit": false,
     "_id": ""
   },
   {

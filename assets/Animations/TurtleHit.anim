@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "TurtuleHit",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.0166666666666666,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "5a0c2bcf-3c2b-4818-a1e1-0f8a27b8602b"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "eecac2d7-34e2-4192-aabd-a85051d51b41"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "a4f064ed-0b43-4be1-a495-97b64d949943"
+            }
+          },
+          {
+            "frame": 0.75,
+            "value": {
+              "__uuid__": "109bf99b-e4be-4085-87a5-2dc0c961eb99"
+            }
+          },
+          {
+            "frame": 1,
+            "value": {
+              "__uuid__": "5a0c2bcf-3c2b-4818-a1e1-0f8a27b8602b"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
