@@ -89,12 +89,13 @@ export default class Player extends cc.Component {
         this.rigidBody.enabled = false;
         this.getComponent(cc.PhysicsCollider).enabled = false;
 
-        const falltime = Math.abs(-430 - (this.node.y + 100)) / 1000;
+        const fallDist = -530 - (this.node.y + 100);
+        const falltime = Math.abs(fallDist) / 1000;
 
         cc.tween(this.node)
             .by(0.5, {position: cc.v3(0, 100, 0)}, {easing: 'sineOut'})
             .delay(0.1)
-            .to(falltime, {position: cc.v3(this.node.x, -430, 0)}, {easing: 'sineIn'})
+            .by(falltime, {position: cc.v3(0, fallDist, 0)}, {easing: 'sineIn'})
             .call(() => {
                 this.getManager().removeLife(1);
             })
@@ -170,7 +171,7 @@ export default class Player extends cc.Component {
     }
 
     checkOutOfBound() {
-        if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -400 || this.node.y >= 400) {
+        if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -500 || this.node.y >= 500) {
             this.getManager().removeLife(1); // do not need animation
             console.log("Player out of bounds");
         }

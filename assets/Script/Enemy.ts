@@ -48,8 +48,8 @@ export default class Enemy extends cc.Component {
         this.rigidBody.enabled = false;
         this.getComponent(cc.PhysicsCollider).enabled = false;
 
-        const fallDist = -430 - this.node.y - 50;
-        const fallTime = Math.abs(-430 - this.node.y - 50) / 1000;
+        const fallDist = -530 - this.node.y - 50;
+        const fallTime = Math.abs(fallDist) / 1000;
 
         cc.tween(this.node)
             .by(0.3, {position: cc.v3(0, 50, 0)}, {easing: 'cubicOut'})
@@ -100,7 +100,7 @@ export default class Enemy extends cc.Component {
 
     update(dt: number){
         if(this.hasBeenHit && this.dieTimer){
-            if(this.node.y <= -430){
+            if(this.node.y <= -530){
                 this.unschedule(this.enemyDie);
                 this.dieTimer = false;
                 this.node.destroy();
