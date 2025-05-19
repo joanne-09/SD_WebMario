@@ -63,7 +63,7 @@ export default class GameManager extends cc.Component {
             return;
         }
         this.timeCount -= 1;
-        console.log(`Current time: ${this.timeCount}`);
+        // console.log(`Current time: ${this.timeCount}`);
         this.updateTimeUI();
     }
 

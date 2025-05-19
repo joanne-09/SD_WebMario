@@ -76,7 +76,7 @@ export default class QuestionBox extends cc.Component {
         if(!this.questionMushroom) return;
 
         const cnt = this.checkAdjacentBox();
-        const moveX = (cnt+1) * this.node.width + 10;
+        const moveX = (cnt+1) * (this.node.width) * 1.5 + 10;
         const moveTime = moveX / 50;
 
         const mushroomNode = cc.instantiate(this.questionMushroom);
@@ -120,6 +120,7 @@ export default class QuestionBox extends cc.Component {
                 this.spawnMushroom();
                 console.log("Player hit the special question box");
             }else{
+                this.getManager().addScore(100);
                 this.getManager().addMoney(this.boxMoney);
                 this.spawnMoney();
                 console.log("Player hit the normal question box");

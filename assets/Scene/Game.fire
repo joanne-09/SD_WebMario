@@ -288,10 +288,10 @@
         "__id__": 9
       },
       {
-        "__id__": 10
+        "__id__": 8
       },
       {
-        "__id__": 8
+        "__id__": 10
       },
       {
         "__id__": 11
@@ -310,8 +310,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 14,
-      "height": 27
+      "width": 16,
+      "height": 16
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -384,6 +384,18 @@
       },
       {
         "__uuid__": "e8af6d0e-85c2-41e8-a8cc-2993e4e94e68"
+      },
+      {
+        "__uuid__": "35ba6580-ce3c-401b-8aa6-6f3ddaaa7af3"
+      },
+      {
+        "__uuid__": "73d73ac0-0ec8-4fcf-bddc-4fa2cfe7c918"
+      },
+      {
+        "__uuid__": "4b3b20cb-e7e6-4937-8d94-2c4dad446919"
+      },
+      {
+        "__uuid__": "fab83068-1438-4521-8d3b-6fc3307db9dd"
       }
     ],
     "playOnLoad": false,
@@ -408,54 +420,11 @@
       "y": 0
     },
     "_angularVelocity": 0,
-    "_fixedRotation": false,
+    "_fixedRotation": true,
     "enabledContactListener": true,
     "bullet": false,
     "awakeOnLoad": true,
     "_id": "aa9eUmsgtHL6aun6INbADd"
-  },
-  {
-    "__type__": "cc.PhysicsPolygonCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 6
-    },
-    "_enabled": true,
-    "tag": 1,
-    "_density": 1,
-    "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
-    "body": null,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "points": [
-      {
-        "__type__": "cc.Vec2",
-        "x": -10,
-        "y": -13
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 10,
-        "y": -13
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": 10,
-        "y": 13
-      },
-      {
-        "__type__": "cc.Vec2",
-        "x": -10,
-        "y": 13
-      }
-    ],
-    "_id": "75fpX3jGtFz4aHER5vehsW"
   },
   {
     "__type__": "cc.Sprite",
@@ -473,7 +442,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "c7d13180-9a2e-4f19-85ae-10252d71261a"
+      "__uuid__": "c9a0b419-19bd-4949-a834-3624c2c72463"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -487,9 +456,35 @@
     "_fillRange": 0,
     "_isTrimmedMode": false,
     "_atlas": {
-      "__uuid__": "9f187e2b-baf4-4268-b88f-a14b17c0698b"
+      "__uuid__": "ef3c49ab-fecf-4742-8c2e-9fe239fea99a"
     },
     "_id": "28MVPKuERNEKYhDN+I/+6g"
+  },
+  {
+    "__type__": "cc.PhysicsBoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_density": 1,
+    "_sensor": false,
+    "_friction": 0.2,
+    "_restitution": 0,
+    "body": null,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 16,
+      "height": 16
+    },
+    "_id": "49gypTPg9DorJou1oOTk5v"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -817,6 +812,36 @@
       {
         "__type__": "cc.Vec2",
         "x": 1600,
+        "y": -160
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 1584,
+        "y": -160
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 1584,
+        "y": -144
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 1552,
+        "y": -144
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 1552,
+        "y": -152
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 1536.1,
+        "y": -152
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 1536,
         "y": -160
       },
       {
@@ -1929,23 +1954,23 @@
     "points": [
       {
         "__type__": "cc.Vec2",
-        "x": 2645,
-        "y": -160
+        "x": 2672,
+        "y": -96
       },
       {
         "__type__": "cc.Vec2",
-        "x": 2693,
-        "y": -160
+        "x": 2672,
+        "y": -144
       },
       {
         "__type__": "cc.Vec2",
-        "x": 2693,
-        "y": -64
+        "x": 2704,
+        "y": -144
       },
       {
         "__type__": "cc.Vec2",
-        "x": 2645,
-        "y": -64
+        "x": 2704,
+        "y": -96
       }
     ],
     "_id": "6d07A51oxP0I9o8TDBGhMq"
@@ -3585,7 +3610,7 @@
       "ctor": "Float64Array",
       "array": [
         1328.642,
-        14.845,
+        -0.43,
         0,
         0,
         0,

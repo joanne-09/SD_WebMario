@@ -3,7 +3,7 @@
   "_name": "Idle",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.03333333333333333,
+  "_duration": 0.016666666666666666,
   "sample": 60,
   "speed": 1,
   "wrapMode": 1,
@@ -12,9 +12,9 @@
       "cc.Sprite": {
         "spriteFrame": [
           {
-            "frame": 0.016666666666666666,
+            "frame": 0,
             "value": {
-              "__uuid__": "c7d13180-9a2e-4f19-85ae-10252d71261a"
+              "__uuid__": "c9a0b419-19bd-4949-a834-3624c2c72463"
             }
           }
         ]
