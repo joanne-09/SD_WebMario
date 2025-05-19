@@ -1,3 +1,4 @@
+import AccessUser from "./AccessUser";
 const {ccclass, property} = cc._decorator;
 
 @ccclass("SignUp")
@@ -47,6 +48,13 @@ export default class SignUp extends cc.Component {
         }else{
             cc.warn("BackButton is null");
         }
+
+        if(this.EnterButton) {
+            this.stopBGM();
+            this.EnterButton.node.on('click', this.onEnter, this);
+        }else{
+            cc.warn("EnterButton is null");
+        }
     }
 
     stopBGM () {
@@ -58,27 +66,24 @@ export default class SignUp extends cc.Component {
     }
 
     signUpFirebase(email: string, username: string, password: string) {
-        const firebase = cc.find("FirebaseService").getComponent("FirebaseService").getFirebase();
-        if (firebase) {
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    cc.log("User signed up:", user);
+        const auth = firebase.auth();
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                cc.log("User signed up:", user);
 
-                    const accessUser = cc.find("AccessUser").getComponent("AccessUser");
-                    if (accessUser) {
-                        accessUser.saveUser(user.uid, email, username);
-                    }
-
-                    cc.director.loadScene('Menu');
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    cc.error("Error signing up:", errorCode, errorMessage);
-                });
-        } else {
-            cc.error("Firebase is not initialized.");
-        }
+                AccessUser.saveUser(user.uid, email, username)
+                    .then(() => {
+                        cc.director.loadScene('Menu');
+                    })
+                    .catch((error) => {
+                        cc.error("Error saving user data:", error);
+                    });
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                cc.error("Error signing up:", errorCode, errorMessage);
+            });
     }
 }

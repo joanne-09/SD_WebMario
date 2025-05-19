@@ -1,39 +1,25 @@
-const {ccclass, property} = cc._decorator;
-
 export interface UserData {
     email: string;
     username: string;
-    highscore?: number;
-    userlife?: number;
     usermoney?: number;
     userlevel?: number;
+    createdAt?: any;
 }
 
-export default class AccessUser extends cc.Component {
-    private static _instance: AccessUser = null;
-
-    public static get instance(): AccessUser {
-        return this._instance;
-    }
-
-    onLoad() {
-        if (AccessUser._instance === null) {
-            AccessUser._instance = this;
-            cc.game.addPersistRootNode(this.node);
-        } else {
-            this.node.destroy();
-        }
-    }
-
-    public async saveUser(userid: string, email: string, username: string) {
-        const firebase = cc.find("FirebaseService").getComponent("FirebaseService").getFirebase();
+export default class AccessUser {
+    public static async saveUser(userId: string, email: string, username: string, initialMoney: number = 0, initialLevel: number = 1): Promise<void> {
         const db = firebase.firestore();
 
+        const userData: UserData = {
+            email: email,
+            username: username,
+            usermoney: initialMoney,
+            userlevel: initialLevel,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
         try {
-            await db.collection("users").doc(userid).set({
-                email: email,
-                username: username,
-            }, { merge: true });
+            await db.collection("users").doc(userId).set(userData, { merge: true });
             cc.log("User saved successfully");
         } catch (error) {
             cc.error("Error saving user: ", error);
