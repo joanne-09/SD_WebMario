@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "BigRun",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.4166666666666667,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "c7d13180-9a2e-4f19-85ae-10252d71261a"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "af347c49-343c-43cd-a259-e8e9b1a0cecf"
+            }
+          },
+          {
+            "frame": 0.26666666666666666,
+            "value": {
+              "__uuid__": "866f608d-9d8c-4328-b5c2-df2a661c9b75"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "c7d13180-9a2e-4f19-85ae-10252d71261a"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

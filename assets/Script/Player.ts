@@ -60,14 +60,14 @@ export default class Player extends cc.Component {
             }else{
                 velocity.x = -this.moveSpeed;
             }
-            this.node.scaleX = -1;
+            this.node.scaleX = -Math.abs(this.node.scaleX);
         } else if (this.moveDirection === PlayerDirection.RIGHT) {
             if(this.moveLock){
                 velocity.x = 0;
             }else{
                 velocity.x = this.moveSpeed;
             }
-            this.node.scaleX = 1;
+            this.node.scaleX = Math.abs(this.node.scaleX);
         } else {
             this.moveLock = false;
             velocity.x = 0;
