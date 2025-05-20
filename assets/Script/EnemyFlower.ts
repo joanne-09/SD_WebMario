@@ -30,8 +30,16 @@ export default class EnemyFlower extends cc.Component {
             const lowPos = this.initialPos.y - this.moveDistance;
             this.move
                 .to(1, {position: cc.v3(this.node.x, lowPos, this.node.z)}, {easing: 'sineIn'})
+        }else if(this.moveDirection === FlowerDirection.DOWN) {
+            const lowPos = this.initialPos.y + this.moveDistance;
+            this.move
+                .to(1, {position: cc.v3(this.node.x, lowPos, this.node.z)}, {easing: 'sineIn'})
         }else if(this.moveDirection === FlowerDirection.LEFT) {
             const lowPos = this.initialPos.x + this.moveDistance;
+            this.move
+                .to(1, {position: cc.v3(lowPos, this.node.y, this.node.z)}, {easing: 'sineIn'})
+        }else if(this.moveDirection === FlowerDirection.RIGHT) {
+            const lowPos = this.initialPos.x - this.moveDistance;
             this.move
                 .to(1, {position: cc.v3(lowPos, this.node.y, this.node.z)}, {easing: 'sineIn'})
         }

@@ -2299,12 +2299,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "a9EeD6EwVGW7/2LZbt3cQL"
   },
@@ -2513,12 +2516,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "85GEhprl1NTq9tPFsLHvIm"
   },
@@ -2727,12 +2733,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "baxPKEohNArIveSXpQImUT"
   },
@@ -2941,11 +2950,16 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
-    "questionMushroom": null,
+    "questionMushroom": {
+      "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
+    },
     "_id": "c6RbK0JdJK4p64rQmof1RM"
   },
   {
@@ -3153,11 +3167,16 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
-    "questionMushroom": null,
+    "questionMushroom": {
+      "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
+    },
     "_id": "cfxJajIKhOmYX9VFU5viVT"
   },
   {
@@ -3365,12 +3384,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "8112mrvypCoIWCpSgijPFZ"
   },
@@ -3579,12 +3601,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": false,
+    "boxType": 0,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "bbemFDPdFFTbs12bM8xkA/"
   },
@@ -3793,12 +3818,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": true,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "f4mog7uOtEe79mmkPUNo1s"
   },
@@ -4007,12 +4035,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": true,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "d97gN5l+VFGIFhf32k8bfo"
   },
@@ -4221,12 +4252,15 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "specialBox": true,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
     "questionMushroom": {
       "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
+    },
+    "questionRandom": {
+      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
     },
     "_id": "78xn1kdftLSqvnsR+LwqFe"
   },

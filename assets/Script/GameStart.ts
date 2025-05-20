@@ -8,6 +8,9 @@ export default class GameStart extends cc.Component {
         if(this.level == 1){
             cc.director.loadScene("Game");
         }
+        else if(this.level == 2){
+            cc.director.loadScene("Game2");
+        }
     }
 
     onLoad(){

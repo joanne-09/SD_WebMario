@@ -1,18 +1,26 @@
 const {ccclass, property} = cc._decorator;
 
+enum BoxType {
+    NORMAL,
+    SPECIAL,
+    RANDOM,
+}
+
 @ccclass("QuestionBox")
 export default class QuestionBox extends cc.Component {
     @property(cc.Animation)
     animation: cc.Animation = null;
     @property(cc.SpriteFrame)
     emptyBox: cc.SpriteFrame = null;
-    @property(cc.Boolean)
-    specialBox: boolean = false;
+    @property(cc.Float)
+    boxType: BoxType = BoxType.NORMAL;
 
     @property(cc.Prefab)
     questionMoney: cc.Prefab = null;
     @property(cc.Prefab)
     questionMushroom: cc.Prefab = null;
+    @property(cc.Prefab)
+    questionRandom: cc.Prefab = null;
 
     private readonly boxMoney: number = 10;
 
@@ -72,14 +80,15 @@ export default class QuestionBox extends cc.Component {
         console.log("Spawned money");
     }
 
-    private spawnMushroom() {
-        if(!this.questionMushroom) return;
+    private spawnMushroom(isRandom: boolean = false) {
+        if(!this.questionMushroom || !this.questionRandom) return;
 
         const cnt = this.checkAdjacentBox();
         const moveX = (cnt+1) * (this.node.width) * 1.5 + 20;
         const moveTime = moveX / 50;
 
-        const mushroomNode = cc.instantiate(this.questionMushroom);
+        const mushroomPrefab = isRandom ? this.questionRandom : this.questionMushroom;
+        const mushroomNode = cc.instantiate(mushroomPrefab);
         const mushroomRigidBody = mushroomNode.getComponent(cc.RigidBody);
         this.node.parent.addChild(mushroomNode);
 
@@ -116,9 +125,12 @@ export default class QuestionBox extends cc.Component {
             this.isEmpty = true;
             this.playAnimation();
 
-            if(this.specialBox){
+            if(this.boxType === BoxType.SPECIAL){
                 this.spawnMushroom();
                 console.log("Player hit the special question box");
+            }else if(this.boxType === BoxType.RANDOM){
+                this.spawnMushroom(true);
+                console.log("Player hit the random question box");
             }else{
                 this.getManager().addScore(100);
                 this.getManager().addMoney(this.boxMoney);

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "QuestionBox",
+    "_name": "QuestionRandom",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -27,16 +27,10 @@
       },
       {
         "__id__": 4
-      },
-      {
-        "__id__": 5
-      },
-      {
-        "__id__": 6
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 5
     },
     "_opacity": 255,
     "_color": {
@@ -60,15 +54,15 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        145.615,
-        -152,
+        0,
+        0,
         0,
         0,
         0,
         0,
         1,
-        2,
-        2,
+        1,
+        1,
         1
       ]
     },
@@ -101,7 +95,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "45e73763-7c03-4ac7-976b-9624981162d3"
+      "__uuid__": "8d6da6af-2c42-40b5-9de5-d72741aac883"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -120,51 +114,6 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "8701a1f1-fc3c-4651-87e5-3f27e87d28c8"
-    },
-    "_clips": [
-      {
-        "__uuid__": "8701a1f1-fc3c-4651-87e5-3f27e87d28c8"
-      }
-    ],
-    "playOnLoad": false,
-    "_id": ""
-  },
-  {
-    "__type__": "92607GzcSlFBqEI4kf/ZGju",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "animation": {
-      "__id__": 3
-    },
-    "emptyBox": {
-      "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
-    },
-    "boxType": 0,
-    "questionMoney": {
-      "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
-    },
-    "questionMushroom": {
-      "__uuid__": "b1b9fd1b-9ad8-4735-a873-a49a07f0200d"
-    },
-    "questionRandom": {
-      "__uuid__": "391d36c8-82ac-409f-8e32-996b2c1c3700"
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.RigidBody",
     "_name": "",
     "_objFlags": 0,
@@ -172,7 +121,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 0,
+    "_type": 2,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -184,7 +133,7 @@
     },
     "_angularVelocity": 0,
     "_fixedRotation": false,
-    "enabledContactListener": true,
+    "enabledContactListener": false,
     "bullet": false,
     "awakeOnLoad": true,
     "_id": ""
@@ -197,7 +146,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "tag": 10,
+    "tag": 0,
     "_density": 1,
     "_sensor": false,
     "_friction": 0.2,

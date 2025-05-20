@@ -121,8 +121,14 @@ export default class Player extends cc.Component {
             if(flower.moveDirection === 0 && normal.y < -0.9){
                 // flower is moving up and contact from above
                 return true;
+            }else if(flower.moveDirection === 1 && normal.x > 0.9){
+                // flower is moving down and contact from right
+                return true;
             }else if(flower.moveDirection === 2 && normal.x > 0.9){
                 // flower is moving left and contact from right
+                return true;
+            }else if(flower.moveDirection === 3 && normal.x < -0.9){
+                // flower is moving right and contact from left
                 return true;
             }
         }
