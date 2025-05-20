@@ -2179,6 +2179,12 @@
     "EnterButton": {
       "__id__": 22
     },
+    "emailInput": {
+      "__id__": 33
+    },
+    "passwordInput": {
+      "__id__": 44
+    },
     "_id": "02ZxnHQa9BnrJRZ18/rVZo"
   }
 ]
