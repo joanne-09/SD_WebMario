@@ -115,8 +115,18 @@ export default class Player extends cc.Component {
         return collider.tag === 2 || collider.node.name === "Enemy";
     }
 
-    private isFlower(collider: cc.PhysicsCollider) {
-        return collider.node.name === "EnemyFlower";
+    private isFlower(collider: cc.PhysicsCollider, normal: cc.Vec2): boolean {
+        if(collider.node.name === "EnemyFlower"){
+            const flower = collider.node.getComponent("EnemyFlower");
+            if(flower.moveDirection === 0 && normal.y < -0.9){
+                // flower is moving up and contact from above
+                return true;
+            }else if(flower.moveDirection === 2 && normal.x > 0.9){
+                // flower is moving left and contact from right
+                return true;
+            }
+        }
+        return false;
     }
 
     private isMushroom(collider: cc.PhysicsCollider) {
@@ -230,11 +240,9 @@ export default class Player extends cc.Component {
                 console.log("Player hit enemy from other sides");
                 if(!enemy.hasBeenHit) this.affectByEnemy();
             }
-        }else if(this.isFlower(otherCollider)){
-            if(normal.y < -0.9){
-                console.log("Player hit flower from above");
-                this.affectByEnemy();
-            }
+        }else if(this.isFlower(otherCollider, normal)){
+            console.log("Player hit flower from above");
+            this.affectByEnemy();
         }else if(this.isMushroom(otherCollider)){
             this.becomeBig();
             otherCollider.node.destroy();
