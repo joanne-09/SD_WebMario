@@ -33,15 +33,18 @@ export default class GameManager extends cc.Component {
         cc.director.getPhysicsManager().gravity = gravity;
     }
 
-    public addMoney(amount: number){
-        if(amount <= 0) return;
-        this.moneyCount += amount;
-        console.log(`add money: ${amount}, total money: ${this.moneyCount}`);
+    public addMoney(add: number = 0, mul: number = 1){
+        this.moneyCount = this.moneyCount * mul + add;
+        console.log(`total money: ${this.moneyCount}`);
         this.updateMoneyUI();
     }
 
-    public removeLife(amount: number){
-        this.lifeCount -= amount;
+    public removeLife(amount: number = 1, isRandom: boolean = false){
+        if(isRandom && this.lifeCount > 1){
+            this.lifeCount = 1;
+        }else{
+            this.lifeCount -= amount;
+        }
         console.log(`remove life: ${amount}, total life: ${this.lifeCount}`);
         if(this.lifeCount <= 0){
             this.handleGameover();
@@ -50,11 +53,21 @@ export default class GameManager extends cc.Component {
         }
     }
 
-    public addScore(amount: number){
-        if(amount <= 0) return;
-        this.scoreCount += amount;
-        console.log(`add score: ${amount}, total score: ${this.scoreCount}`);
+    public addScore(add: number = 0, mul: number = 1){
+        this.scoreCount = this.scoreCount * mul + add;
+        console.log(`total score: ${this.scoreCount}`);
         this.updateScoreUI();
+    }
+
+    public removeTime(mul: number = 1){
+        this.unschedule(this.timer);
+        this.timeCount = Math.floor(this.timeCount * mul);
+        if(this.timeCount <= 0){
+            this.removeLife(1);
+            return;
+        }
+
+        this.schedule(this.timer, 1.0);
     }
 
     private timer(){

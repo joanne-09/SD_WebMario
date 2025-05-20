@@ -84,13 +84,13 @@
         "__id__": 52
       },
       {
-        "__id__": 6
-      },
-      {
         "__id__": 193
       },
       {
         "__id__": 397
+      },
+      {
+        "__id__": 6
       }
     ],
     "_active": true,
@@ -3208,7 +3208,7 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "boxType": 0,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
@@ -4293,7 +4293,7 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "boxType": 0,
+    "boxType": 2,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
@@ -4944,7 +4944,7 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "boxType": 0,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
@@ -5161,7 +5161,7 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "boxType": 0,
+    "boxType": 2,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
@@ -5720,7 +5720,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        730.857,
+        692.755,
         95,
         0,
         0,
@@ -5812,7 +5812,7 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "boxType": 0,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },
@@ -5937,7 +5937,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        804.581,
+        725.502,
         95,
         0,
         0,
@@ -6154,7 +6154,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        884,
+        757.474,
         95,
         0,
         0,
@@ -6463,7 +6463,7 @@
     "emptyBox": {
       "__uuid__": "0419c1cc-61cf-45e4-baee-54a176b797dc"
     },
-    "boxType": 0,
+    "boxType": 1,
     "questionMoney": {
       "__uuid__": "6c624280-992c-4e8b-9fdc-a2fd911a7679"
     },

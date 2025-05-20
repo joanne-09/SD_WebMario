@@ -121,7 +121,7 @@ export default class Player extends cc.Component {
             if(flower.moveDirection === 0 && normal.y < -0.7){
                 // flower is moving up and contact from above
                 return true;
-            }else if(flower.moveDirection === 1 && normal.x > 0.7){
+            }else if(flower.moveDirection === 1 && normal.y > 0.7){
                 // flower is moving down and contact from right
                 return true;
             }else if(flower.moveDirection === 2 && normal.x > 0.7){
@@ -137,6 +137,10 @@ export default class Player extends cc.Component {
 
     private isMushroom(collider: cc.PhysicsCollider) {
         return collider.tag === 4 || collider.node.name === "QuestionMushroom";
+    }
+
+    private isRandom(collider: cc.PhysicsCollider) {
+        return collider.node.name === "QuestionRandom";
     }
 
     private isWinner(collider: cc.PhysicsCollider) {
@@ -183,6 +187,26 @@ export default class Player extends cc.Component {
             console.log("Player become small");
         }else if(this.playerState === PlayerState.SMALL) {
             console.log("Player is already small");
+        }
+    }
+
+    private eatRandom(){
+        const random = Math.random();
+        if(random < 0.01){
+            // 1% chance to have one life remain
+            this.getManager().removeLife(1, true);
+        }else if(random < 0.06){
+            // 5% chance to have 10000 score
+            this.getManager().addScore(10000);
+        }else if(random < 0.16){
+            // 10% chance to have 10% of the score remain
+            this.getManager().addScore(0, 0.1);
+        }else if(random < 0.26){
+            // 10% chance to have 10% of time remain
+            this.getManager().removeTime(0.1);
+        }else{
+            // else to have 300 score
+            this.getManager().addScore(300);
         }
     }
 
@@ -251,6 +275,9 @@ export default class Player extends cc.Component {
             this.affectByEnemy();
         }else if(this.isMushroom(otherCollider)){
             this.becomeBig();
+            otherCollider.node.destroy();
+        }else if(this.isRandom(otherCollider)){
+            this.eatRandom();
             otherCollider.node.destroy();
         }else if(this.isWinner(otherCollider)){
             console.log("Player hit winner");
