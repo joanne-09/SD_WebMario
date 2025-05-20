@@ -112,7 +112,7 @@ export default class GameManager extends cc.Component {
     private async useAccessUser(){
         const currentUser = firebase.auth().currentUser.uid;
         const currentUserData = await AccessUser.getUser(currentUser);
-        let newLevel = currentUserData.userlevel + 1 || 0;
+        let newLevel = Math.max(currentUserData.userlevel + 1, 2) || 0;
         let newScore = Math.max(this.scoreCount, currentUserData.highscore || 0);
 
         const data: Partial<UserData> = {
