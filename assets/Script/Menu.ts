@@ -7,6 +7,8 @@ export default class Menu extends cc.Component {
     level1: cc.Button = null;
     @property(cc.Button)
     level2: cc.Button = null;
+    @property(cc.Button)
+    logout: cc.Button = null;
 
     @property(cc.Label)
     username: cc.Label = null;
@@ -27,7 +29,6 @@ export default class Menu extends cc.Component {
         this.userData = await AccessUser.getUser(userId);
         if (this.userData) {
             this.moneyCount = this.userData.usermoney || 0;
-            this.lifeCount = 5;
             this.scoreCount = this.userData.highscore || 0;
             this.updateUI();
         }
@@ -38,6 +39,8 @@ export default class Menu extends cc.Component {
         this.updateMoneyUI();
         this.updateLifeUI();
         this.updateScoreUI();
+
+        this.setLevelButton();
     }
 
     startLevel(lvl: number) {
@@ -75,6 +78,14 @@ export default class Menu extends cc.Component {
         console.log(`Current score: ${this.scoreCount}`);
     }
 
+    private setLevelButton(){
+        if(this.userData){
+            console.log(`User level: ${this.userData.userlevel}`);
+            this.level1.interactable = this.userData.userlevel >= 0;
+            this.level2.interactable = this.userData.userlevel >= 1;
+        }
+    }
+
     // Life cycle method
     onLoad() {
         if(this.level1) {
@@ -93,6 +104,20 @@ export default class Menu extends cc.Component {
             }, this);
         } else {
             cc.warn("Level 2 button is null");
+        }
+
+        if(this.logout) {
+            this.logout.node.on('click', () => {
+                cc.log("Logout button clicked");
+                firebase.auth().signOut().then(() => {
+                    cc.log("User signed out");
+                    cc.director.loadScene('Start');
+                }).catch((error) => {
+                    cc.error("Error signing out: ", error);
+                });
+            }, this);
+        } else {
+            cc.warn("Logout button is null");
         }
 
         const currentUser = firebase.auth().currentUser;

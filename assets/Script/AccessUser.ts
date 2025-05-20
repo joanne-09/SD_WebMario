@@ -44,4 +44,16 @@ export default class AccessUser {
             throw error;
         }
     }
+
+    public static async updateUser(userId: string, data: Partial<UserData>): Promise<void> {
+        const db = firebase.firestore();
+
+        try {
+            await db.collection("users").doc(userId).update(data);
+            cc.log("User updated successfully");
+        } catch (error) {
+            cc.error("Error updating user: ", error);
+            throw error;
+        }
+    }
 }
