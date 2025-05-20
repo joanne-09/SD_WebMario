@@ -1655,7 +1655,7 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 100,
+    "_opacity": 220,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -3099,6 +3099,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "bgm": {
+      "__uuid__": "473707a8-a8df-4c91-b26a-48d0ba8c134c"
+    },
     "level1": {
       "__id__": 45
     },

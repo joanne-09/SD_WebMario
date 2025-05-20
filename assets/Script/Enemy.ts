@@ -2,6 +2,9 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass("Enemy")
 export default class Enemy extends cc.Component {
+    @property(cc.AudioClip)
+    kickBGM: cc.AudioClip = null;
+
     @property(cc.Float)
     moveSpeed: number = 100;
     @property(cc.Float)
@@ -134,6 +137,7 @@ export default class Enemy extends cc.Component {
             const normal = contact.getWorldManifold().normal;
             if((this.moveDirection === 1 && normal.x > 0.7) || (this.moveDirection === -1 && normal.x < -0.7)){
                 console.log("Player hit enemy from the side.");
+                cc.audioEngine.playEffect(this.kickBGM, false);
                 this.turnAround();
             }
         }

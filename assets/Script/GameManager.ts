@@ -10,6 +10,13 @@ enum PlayerDirection {
 
 @ccclass("GameManager")
 export default class GameManager extends cc.Component {
+    @property(cc.AudioClip)
+    bgm: cc.AudioClip = null;
+    @property(cc.AudioClip)
+    coinBGM: cc.AudioClip = null;
+    @property(cc.AudioClip)
+    winBGM: cc.AudioClip = null;
+
     @property(Player)
     player: Player = null;
 
@@ -37,10 +44,23 @@ export default class GameManager extends cc.Component {
         cc.director.getPhysicsManager().gravity = gravity;
     }
 
+    playBGM() {
+        if (this.bgm) {
+            cc.audioEngine.playMusic(this.bgm, true);
+        } else {
+            cc.warn("BGM is null");
+        }
+    }
+
+    stopBGM() {
+        cc.audioEngine.stopAll();
+    }
+
     public addMoney(add: number = 0, mul: number = 1){
         this.moneyCount = this.moneyCount * mul + add;
         console.log(`total money: ${this.moneyCount}`);
         this.updateMoneyUI();
+        cc.audioEngine.playEffect(this.coinBGM, false);
     }
 
     public removeLife(amount: number = 1, isRandom: boolean = false){
@@ -124,8 +144,16 @@ export default class GameManager extends cc.Component {
         await AccessUser.updateUser(currentUser, data);
     }
 
+    backtoMenu(){
+        console.log("Back to Menu scene");
+        this.stopBGM();
+        cc.director.loadScene("Menu");
+    }
+
     public async handleGameWin(){
         console.log("Player wins the game");
+        cc.audioEngine.stopMusic();
+        cc.audioEngine.playEffect(this.winBGM, false);
 
         this.addScore(5000);
 
@@ -142,8 +170,8 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         this.scheduleOnce(
-            cc.director.loadScene.bind(cc.director, "Menu"),
-            3.0, // Delay for 3 seconds
+            this.backtoMenu
+            , 3.0, // Delay for 3 seconds
         );
 
         // set level complete node to middle of camera
@@ -175,6 +203,7 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
+        this.stopBGM();
         cc.director.loadScene("Gameover");
     }
 
@@ -196,6 +225,7 @@ export default class GameManager extends cc.Component {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
+        this.stopBGM();
         cc.director.loadScene("GameStart");
     }
 
@@ -216,6 +246,8 @@ export default class GameManager extends cc.Component {
     }
 
     start(){
+        this.playBGM();
+
         // Initialize player
         this.updateMoneyUI();
         this.updateLifeUI();

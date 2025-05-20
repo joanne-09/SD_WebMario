@@ -355,6 +355,21 @@
       "__id__": 6
     },
     "_enabled": true,
+    "jumpBGM": {
+      "__uuid__": "5985dd32-67ff-44c8-8451-96075fe2fb7b"
+    },
+    "enemyBGM": {
+      "__uuid__": "6b8358f9-41c1-41be-bdf6-2dddc82c5b90"
+    },
+    "dieBGM": {
+      "__uuid__": "54c4826e-9d51-4aae-be13-a0783243527f"
+    },
+    "biggerBGM": {
+      "__uuid__": "49d47f56-2cf7-49a6-88b6-7fe98c733f5e"
+    },
+    "smallerBGM": {
+      "__uuid__": "9d068409-1172-4a11-84db-09af4f95bcf9"
+    },
     "moveSpeed": 200,
     "jumpSpeed": 600,
     "isOnGround": false,
@@ -3077,6 +3092,9 @@
       "__id__": 55
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 57
     },
@@ -3294,6 +3312,9 @@
       "__id__": 62
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 64
     },
@@ -3511,6 +3532,9 @@
       "__id__": 69
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 71
     },
@@ -3728,6 +3752,9 @@
       "__id__": 76
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 78
     },
@@ -3945,6 +3972,9 @@
       "__id__": 83
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 85
     },
@@ -4162,6 +4192,9 @@
       "__id__": 90
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 92
     },
@@ -4379,6 +4412,9 @@
       "__id__": 97
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 99
     },
@@ -4596,6 +4632,9 @@
       "__id__": 104
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 106
     },
@@ -4813,6 +4852,9 @@
       "__id__": 111
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 113
     },
@@ -5030,6 +5072,9 @@
       "__id__": 118
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 120
     },
@@ -5247,6 +5292,9 @@
       "__id__": 125
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 127
     },
@@ -5464,6 +5512,9 @@
       "__id__": 132
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 134
     },
@@ -5681,6 +5732,9 @@
       "__id__": 139
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 141
     },
@@ -5898,6 +5952,9 @@
       "__id__": 146
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 148
     },
@@ -6115,6 +6172,9 @@
       "__id__": 153
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 155
     },
@@ -6332,6 +6392,9 @@
       "__id__": 160
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 162
     },
@@ -6549,6 +6612,9 @@
       "__id__": 167
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 169
     },
@@ -6766,6 +6832,9 @@
       "__id__": 174
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 176
     },
@@ -6983,6 +7052,9 @@
       "__id__": 181
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 183
     },
@@ -7200,6 +7272,9 @@
       "__id__": 188
     },
     "_enabled": true,
+    "mushroomBGM": {
+      "__uuid__": "732d66da-44ea-4268-a3bd-4dbee5179175"
+    },
     "animation": {
       "__id__": 190
     },
@@ -7617,6 +7692,9 @@
       "__id__": 196
     },
     "_enabled": true,
+    "kickBGM": {
+      "__uuid__": "7418edbe-d266-4fc5-8b47-79ebf7dd24a6"
+    },
     "moveSpeed": 60,
     "moveRange": 200,
     "animation": {
@@ -7827,6 +7905,9 @@
       "__id__": 203
     },
     "_enabled": true,
+    "kickBGM": {
+      "__uuid__": "7418edbe-d266-4fc5-8b47-79ebf7dd24a6"
+    },
     "moveSpeed": 60,
     "moveRange": 50,
     "animation": {
@@ -8037,6 +8118,9 @@
       "__id__": 210
     },
     "_enabled": true,
+    "kickBGM": {
+      "__uuid__": "7418edbe-d266-4fc5-8b47-79ebf7dd24a6"
+    },
     "moveSpeed": 60,
     "moveRange": 200,
     "animation": {
@@ -8247,6 +8331,9 @@
       "__id__": 217
     },
     "_enabled": true,
+    "kickBGM": {
+      "__uuid__": "7418edbe-d266-4fc5-8b47-79ebf7dd24a6"
+    },
     "moveSpeed": 60,
     "moveRange": 50,
     "animation": {
@@ -13574,6 +13661,15 @@
       "__id__": 2
     },
     "_enabled": true,
+    "bgm": {
+      "__uuid__": "e25d0945-f42d-4a41-b45c-5f4a67f04b95"
+    },
+    "coinBGM": {
+      "__uuid__": "43081a00-c475-4251-9293-459c85247f78"
+    },
+    "winBGM": {
+      "__uuid__": "4144b690-48b5-42ed-9d0a-67f80dd2ab6f"
+    },
     "player": {
       "__id__": 7
     },

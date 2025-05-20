@@ -18,6 +18,7 @@ export default class SignUp extends cc.Component {
 
     onBack () {
         cc.log("Back button clicked");
+        this.stopBGM();
         cc.director.loadScene('Start');
     }
 
@@ -38,19 +39,18 @@ export default class SignUp extends cc.Component {
             return;
         }
 
+        this.stopBGM();
         this.signUpFirebase(email, username, password);
     }
 
     onLoad () {
         if(this.BackButton) {
-            this.stopBGM();
             this.BackButton.node.on('click', this.onBack, this);
         }else{
             cc.warn("BackButton is null");
         }
 
         if(this.EnterButton) {
-            this.stopBGM();
             this.EnterButton.node.on('click', this.onEnter, this);
         }else{
             cc.warn("EnterButton is null");

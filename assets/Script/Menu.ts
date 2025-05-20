@@ -3,6 +3,9 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass("Menu")
 export default class Menu extends cc.Component {
+    @property(cc.AudioClip)
+    bgm: cc.AudioClip = null;
+
     @property(cc.Button)
     level1: cc.Button = null;
     @property(cc.Button)
@@ -44,6 +47,8 @@ export default class Menu extends cc.Component {
     }
 
     startLevel(lvl: number) {
+        this.stopBGM();
+
         cc.sys.localStorage.setItem("level", lvl.toString());
         cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
         cc.sys.localStorage.setItem("playerLife", "5");
@@ -86,9 +91,22 @@ export default class Menu extends cc.Component {
         }
     }
 
+    playBGM() {
+        if (this.bgm) {
+            cc.audioEngine.playMusic(this.bgm, true);
+        } else {
+            cc.warn("BGM is null");
+        }
+    }
+
+    stopBGM() {
+        cc.audioEngine.stopAll();
+    }
+
     // Life cycle method
     onLoad() {
         if(this.level1) {
+
             this.level1.node.on('click', () => {
                 cc.log("Level 1 button clicked");
                 this.startLevel(1);
@@ -126,5 +144,9 @@ export default class Menu extends cc.Component {
         } else {
             cc.warn("No user is currently signed in");
         }
+    }
+
+    start() {
+        this.playBGM();
     }
 }

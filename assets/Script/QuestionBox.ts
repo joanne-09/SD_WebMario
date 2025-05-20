@@ -8,6 +8,9 @@ enum BoxType {
 
 @ccclass("QuestionBox")
 export default class QuestionBox extends cc.Component {
+    @property(cc.AudioClip)
+    mushroomBGM: cc.AudioClip = null;
+
     @property(cc.Animation)
     animation: cc.Animation = null;
     @property(cc.SpriteFrame)
@@ -82,6 +85,7 @@ export default class QuestionBox extends cc.Component {
 
     private spawnMushroom(isRandom: boolean = false) {
         if(!this.questionMushroom || !this.questionRandom) return;
+        cc.audioEngine.playEffect(this.mushroomBGM, false);
 
         const cnt = this.checkAdjacentBox();
         const moveX = (cnt+1) * (this.node.width) * 1.5 + 20;

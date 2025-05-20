@@ -15,6 +15,17 @@ enum PlayerState {
 
 @ccclass("Player")
 export default class Player extends cc.Component {
+    @property(cc.AudioClip)
+    jumpBGM: cc.AudioClip = null;
+    @property(cc.AudioClip)
+    enemyBGM: cc.AudioClip = null;
+    @property(cc.AudioClip)
+    dieBGM: cc.AudioClip = null;
+    @property(cc.AudioClip)
+    biggerBGM: cc.AudioClip = null;
+    @property(cc.AudioClip)
+    smallerBGM: cc.AudioClip = null;
+
     @property(cc.Float)
     moveSpeed: number = 200;
     @property(cc.Float)
@@ -34,6 +45,8 @@ export default class Player extends cc.Component {
 
     private moveLock: boolean = false;
     private groundCnt: number = 0;
+
+    private hasWon: boolean = false;
 
     playAnimation(animationName: string) {
         if(this.playerState === PlayerState.STALL) {
@@ -81,6 +94,8 @@ export default class Player extends cc.Component {
             this.isOnGround = false;
             this.isJumping = false;
             console.log("Player jump");
+
+            cc.audioEngine.playEffect(this.jumpBGM, false);
         }
     }
 
@@ -161,6 +176,7 @@ export default class Player extends cc.Component {
 
     private becomeBig() {
         if(this.playerState === PlayerState.SMALL) {
+            cc.audioEngine.playEffect(this.biggerBGM, false);
             this.playerStall();
 
             this.scheduleOnce(() => {
@@ -177,6 +193,7 @@ export default class Player extends cc.Component {
 
     private becomeSmall() {
         if(this.playerState === PlayerState.BIG) {
+            cc.audioEngine.playEffect(this.smallerBGM, false);
             this.playerStall();
 
             this.scheduleOnce(() => {
@@ -243,6 +260,8 @@ export default class Player extends cc.Component {
             this.enabled = false;
             return;
         }
+
+        this.hasWon = false;
     }
 
     onBeginContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
@@ -261,6 +280,8 @@ export default class Player extends cc.Component {
             const enemy = otherCollider.node.getComponent("Enemy");
             if(normal.y < -0.7 && enemy){
                 console.log("Player hit enemy from above");
+                cc.audioEngine.playEffect(this.enemyBGM, false);
+
                 if(!enemy.hasBeenHit){
                     enemy.getHit();
                     this.getManager().addScore(500);
@@ -279,9 +300,10 @@ export default class Player extends cc.Component {
         }else if(this.isRandom(otherCollider)){
             this.eatRandom();
             otherCollider.node.destroy();
-        }else if(this.isWinner(otherCollider)){
+        }else if(this.isWinner(otherCollider) && !this.hasWon){
             console.log("Player hit winner");
             this.getManager().handleGameWin();
+            this.hasWon = true;
         }
     }
 
@@ -312,6 +334,7 @@ export default class Player extends cc.Component {
 
         // Animation
         if(this.playerState === PlayerState.DIE){
+            cc.audioEngine.playEffect(this.dieBGM, false);
             this.playAnimation("Die");
         }else if(this.playerState === PlayerState.SMALL){
             if(!this.isOnGround){
