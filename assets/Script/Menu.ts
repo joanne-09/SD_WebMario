@@ -45,7 +45,7 @@ export default class Menu extends cc.Component {
 
     startLevel(lvl: number) {
         cc.sys.localStorage.setItem("level", lvl.toString());
-        cc.sys.localStorage.setItem("playerMoney", "0");
+        cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
         cc.sys.localStorage.setItem("playerLife", "5");
         cc.sys.localStorage.setItem("playerScore", "0");
 

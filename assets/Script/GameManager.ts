@@ -1,4 +1,5 @@
 import Player from "./Player";
+import AccessUser, { UserData } from "./AccessUser";
 const { ccclass, property } = cc._decorator;
 
 enum PlayerDirection {
@@ -20,6 +21,9 @@ export default class GameManager extends cc.Component {
     score: cc.Label = null;
     @property(cc.Label)
     time: cc.Label = null;
+
+    @property(cc.Prefab)
+    levelComplete: cc.Prefab = null;
 
     private moveDirection: PlayerDirection = PlayerDirection.NONE;
 
@@ -105,15 +109,28 @@ export default class GameManager extends cc.Component {
         // console.log(`Current time: ${this.timeCount}`);
     }
 
-    public handleGameWin(){
+    private async useAccessUser(){
+        const currentUser = firebase.auth().currentUser.uid;
+        const currentUserData = await AccessUser.getUser(currentUser);
+        let newLevel = currentUserData.userlevel + 1 || 0;
+        let newScore = Math.max(this.scoreCount, currentUserData.highscore || 0);
+
+        const data: Partial<UserData> = {
+            usermoney: this.moneyCount,
+            userlevel: newLevel,
+            highscore: newScore,
+        }
+
+        await AccessUser.updateUser(currentUser, data);
+    }
+
+    public async handleGameWin(){
         console.log("Player wins the game");
 
         this.addScore(5000);
 
         this.unschedule(this.timer);
-        cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
-        cc.sys.localStorage.setItem("playerScore", this.scoreCount.toString());
-        cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
+        await this.useAccessUser();
 
         if(this.player && this.player.isValid){
             const playerRigidBody = this.player.getComponent(cc.RigidBody);
@@ -128,6 +145,17 @@ export default class GameManager extends cc.Component {
             cc.director.loadScene.bind(cc.director, "Menu"),
             3.0, // Delay for 3 seconds
         );
+
+        // set level complete node to middle of camera
+        const levelCompleteNode = cc.instantiate(this.levelComplete);
+        this.node.addChild(levelCompleteNode);
+        const camera = cc.find("Canvas/Main Camera").getComponent(cc.Camera);
+        const target = camera.node.position;
+        levelCompleteNode.setPosition(target.x, -600, 0);
+
+        cc.tween(levelCompleteNode)
+            .to(0.5, { position: cc.v3(target.x, target.y, 0) }, { easing: 'cubicOut' })
+            .start();
     }
 
     private handleGameover(){
