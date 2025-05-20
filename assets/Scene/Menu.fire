@@ -542,7 +542,7 @@
       "ctor": "Float64Array",
       "array": [
         -454.2,
-        38.467,
+        24.908,
         0,
         0,
         0,
@@ -603,7 +603,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        52.358,
+        127.817,
         0,
         0,
         0,
@@ -707,7 +707,7 @@
       "ctor": "Float64Array",
       "array": [
         -451.987,
-        -22.439,
+        -35.998,
         0,
         0,
         0,
@@ -1060,7 +1060,7 @@
       "ctor": "Float64Array",
       "array": [
         216.173,
-        40.898,
+        27.339,
         0,
         0,
         0,
@@ -1311,7 +1311,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        213.334,
+        215.594,
         -7.434,
         0,
         0,
@@ -1412,7 +1412,7 @@
       "ctor": "Float64Array",
       "array": [
         167.485,
-        -29.213,
+        -45.032,
         0,
         0,
         0,
@@ -1558,7 +1558,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 175,
+      "width": 187,
       "height": 40
     },
     "_anchorPoint": {
@@ -1570,7 +1570,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        190.855,
+        188.595,
         0.364,
         0,
         0,
@@ -1619,7 +1619,7 @@
       "__uuid__": "ee999793-a552-4196-a519-1d95d06a52a8"
     },
     "_isSystemFontUsed": false,
-    "_spacingX": 0,
+    "_spacingX": 2,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
     "_underlineHeight": 0,
@@ -1954,7 +1954,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 120,
       "height": 40
     },
     "_anchorPoint": {
@@ -2023,7 +2023,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 120,
       "height": 40
     },
     "_anchorPoint": {
@@ -2327,7 +2327,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 120,
       "height": 40
     },
     "_anchorPoint": {
@@ -2396,7 +2396,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 120,
       "height": 40
     },
     "_anchorPoint": {
@@ -2728,6 +2728,9 @@
     },
     "level2": {
       "__id__": 52
+    },
+    "username": {
+      "__id__": 12
     },
     "money": {
       "__id__": 26

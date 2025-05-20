@@ -1,3 +1,4 @@
+import AccessUser, {UserData} from "./AccessUser";
 const {ccclass, property} = cc._decorator;
 
 @ccclass("Menu")
@@ -7,6 +8,8 @@ export default class Menu extends cc.Component {
     @property(cc.Button)
     level2: cc.Button = null;
 
+    @property(cc.Label)
+    username: cc.Label = null;
     @property(cc.Label)
     money: cc.Label = null;
     @property(cc.Label)
@@ -18,6 +21,25 @@ export default class Menu extends cc.Component {
     private lifeCount: number = 5;
     private scoreCount: number = 0;
 
+    private userData: UserData = null;
+
+    private async loadUserData(userId: string) {
+        this.userData = await AccessUser.getUser(userId);
+        if (this.userData) {
+            this.moneyCount = this.userData.usermoney || 0;
+            this.lifeCount = 5;
+            this.scoreCount = this.userData.highscore || 0;
+            this.updateUI();
+        }
+    }
+
+    private updateUI() {
+        this.updateUsernameUI();
+        this.updateMoneyUI();
+        this.updateLifeUI();
+        this.updateScoreUI();
+    }
+
     startLevel(lvl: number) {
         cc.sys.localStorage.setItem("level", lvl.toString());
         cc.sys.localStorage.setItem("playerMoney", "0");
@@ -25,6 +47,13 @@ export default class Menu extends cc.Component {
         cc.sys.localStorage.setItem("playerScore", "0");
 
         cc.director.loadScene("GameStart");
+    }
+
+    private updateUsernameUI(){
+        if(!this.username) return;
+        const name = this.userData.username || "Player";
+        this.username.string = name.toUpperCase();
+        console.log(`Current username: ${this.username.string}`);
     }
 
     private updateMoneyUI(){
@@ -64,6 +93,13 @@ export default class Menu extends cc.Component {
             }, this);
         } else {
             cc.warn("Level 2 button is null");
+        }
+
+        const currentUser = firebase.auth().currentUser;
+        if (currentUser) {
+            this.loadUserData(currentUser.uid);
+        } else {
+            cc.warn("No user is currently signed in");
         }
     }
 }
