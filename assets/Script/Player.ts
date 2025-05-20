@@ -118,16 +118,16 @@ export default class Player extends cc.Component {
     private isFlower(collider: cc.PhysicsCollider, normal: cc.Vec2): boolean {
         if(collider.node.name === "EnemyFlower"){
             const flower = collider.node.getComponent("EnemyFlower");
-            if(flower.moveDirection === 0 && normal.y < -0.9){
+            if(flower.moveDirection === 0 && normal.y < -0.7){
                 // flower is moving up and contact from above
                 return true;
-            }else if(flower.moveDirection === 1 && normal.x > 0.9){
+            }else if(flower.moveDirection === 1 && normal.x > 0.7){
                 // flower is moving down and contact from right
                 return true;
-            }else if(flower.moveDirection === 2 && normal.x > 0.9){
+            }else if(flower.moveDirection === 2 && normal.x > 0.7){
                 // flower is moving left and contact from right
                 return true;
-            }else if(flower.moveDirection === 3 && normal.x < -0.9){
+            }else if(flower.moveDirection === 3 && normal.x < -0.7){
                 // flower is moving right and contact from left
                 return true;
             }
@@ -187,7 +187,7 @@ export default class Player extends cc.Component {
     }
 
     checkOutOfBound() {
-        if (this.node.x <= -480 || this.node.x >= (3200-480) || this.node.y <= -500 || this.node.y >= 500) {
+        if (this.node.y <= -500 || this.node.y >= 500) {
             this.getManager().removeLife(1); // do not need animation
             console.log("Player out of bounds");
         }
@@ -226,7 +226,7 @@ export default class Player extends cc.Component {
 
         const normal = contact.getWorldManifold().normal;
         if (this.onGround(otherCollider)) {
-            if (normal.y < -0.9) {
+            if (normal.y < -0.7) {
                 this.groundCnt++;
                 this.isOnGround = true;
                 console.log("Player is on the ground");
@@ -235,7 +235,7 @@ export default class Player extends cc.Component {
             }
         }else if(this.isEnemy(otherCollider)){
             const enemy = otherCollider.node.getComponent("Enemy");
-            if(normal.y < -0.9 && enemy){
+            if(normal.y < -0.7 && enemy){
                 console.log("Player hit enemy from above");
                 if(!enemy.hasBeenHit){
                     enemy.getHit();

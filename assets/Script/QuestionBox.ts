@@ -121,7 +121,7 @@ export default class QuestionBox extends cc.Component {
         if(this.isEmpty) return;
 
         const normal = contact.getWorldManifold().normal;
-        if(otherCollider.node.name === "Player" && normal.y < -0.9){
+        if(otherCollider.node.name === "Player" && normal.y < -0.7){
             this.isEmpty = true;
             this.playAnimation();
 
