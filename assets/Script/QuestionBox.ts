@@ -91,7 +91,8 @@ export default class QuestionBox extends cc.Component {
             .delay(1.0)
             .call(() => {
                 mushroomRigidBody.gravityScale = 1;
-                mushroomRigidBody.linearVelocity = cc.v2(200, 0);
+                mushroomRigidBody.linearVelocity = cc.v2(250, 0);
+                mushroomNode.getComponent(cc.PhysicsCollider).friction = 0;
             })
             .start();
 
