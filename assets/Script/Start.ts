@@ -46,16 +46,16 @@ export default class Start extends cc.Component {
 
     start () {
         // const app = firebase.initializeApp(config);
-        const config = {
-            apiKey: "AIzaSyCQIboBJ6h4EJ9Jy5psUj-_2z_khACnd40",
-            authDomain: "webmario-2826a.firebaseapp.com",
-            projectId: "webmario-2826a",
-            storageBucket: "webmario-2826a.firebasestorage.app",
-            messagingSenderId: "538095669496",
-            appId: "1:538095669496:web:18adf9b7038b5d809dab0d",
-            measurementId: "G-0FD5KM82FQ"
-        };
-        const app = firebase.initializeApp(config);
+        // const config = {
+        //     apiKey: "AIzaSyCQIboBJ6h4EJ9Jy5psUj-_2z_khACnd40",
+        //     authDomain: "webmario-2826a.firebaseapp.com",
+        //     projectId: "webmario-2826a",
+        //     storageBucket: "webmario-2826a.firebasestorage.app",
+        //     messagingSenderId: "538095669496",
+        //     appId: "1:538095669496:web:18adf9b7038b5d809dab0d",
+        //     measurementId: "G-0FD5KM82FQ"
+        // };
+        // const app = firebase.initializeApp(config);
 
         console.log("Firebase initialized successfully");
 
