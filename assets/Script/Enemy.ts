@@ -25,6 +25,8 @@ export default class Enemy extends cc.Component {
 
     private dieTimer: boolean = false;
 
+    private currentSpeed: number = 0;
+
     private playAnimation(){
         if(!this.hasBeenHit){
             this.animation.play("Turtle");
@@ -98,6 +100,8 @@ export default class Enemy extends cc.Component {
             this.node.scaleX = 1;
         }
 
+        this.currentSpeed = this.moveSpeed;
+
         this.playAnimation();
     }
 
@@ -108,7 +112,7 @@ export default class Enemy extends cc.Component {
                 this.dieTimer = false;
                 this.node.destroy();
             }
-            this.rigidBody.linearVelocity = cc.v2(300 * this.moveDirection, this.rigidBody.linearVelocity.y);
+            this.rigidBody.linearVelocity = cc.v2(this.currentSpeed * this.moveDirection, this.rigidBody.linearVelocity.y);
             return;
         }
 
@@ -128,9 +132,11 @@ export default class Enemy extends cc.Component {
             const normal = contact.getWorldManifold().normal;
             if(this.moveDirection === 1 && normal.x > 0.7){
                 console.log("Enemy hit wall on its right.");
+                this.currentSpeed = 300;
                 this.turnAround();
             }else if(this.moveDirection === -1 && normal.x < -0.7){
                 console.log("Enemy hit wall on its left.");
+                this.currentSpeed = 300;
                 this.turnAround();
             }
         }else if(this.isPlayer(otherCollider) && this.hasBeenHit){
@@ -138,6 +144,14 @@ export default class Enemy extends cc.Component {
             if((this.moveDirection === 1 && normal.x > 0.7) || (this.moveDirection === -1 && normal.x < -0.7)){
                 console.log("Player hit enemy from the side.");
                 cc.audioEngine.playEffect(this.kickBGM, false);
+                this.currentSpeed = 600;
+                this.turnAround();
+            }
+        }else{
+            const normal = contact.getWorldManifold().normal;
+            if((this.moveDirection === 1 && normal.x > 0.7) || (this.moveDirection === -1 && normal.x < -0.7)){
+                console.log("Enemy hit something");
+                this.currentSpeed = 300;
                 this.turnAround();
             }
         }

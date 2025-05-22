@@ -100,6 +100,8 @@ export default class Player extends cc.Component {
     }
 
     private playerDie(){
+        cc.audioEngine.playEffect(this.dieBGM, false);
+
         this.playerState = PlayerState.DIE;
         this.rigidBody.enabled = false;
         this.getComponent(cc.PhysicsCollider).enabled = false;
@@ -334,7 +336,6 @@ export default class Player extends cc.Component {
 
         // Animation
         if(this.playerState === PlayerState.DIE){
-            cc.audioEngine.playEffect(this.dieBGM, false);
             this.playAnimation("Die");
         }else if(this.playerState === PlayerState.SMALL){
             if(!this.isOnGround){

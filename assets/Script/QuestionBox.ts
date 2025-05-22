@@ -48,20 +48,6 @@ export default class QuestionBox extends cc.Component {
         return manager;
     }
 
-    private checkAdjacentBox(){
-        let count = 0;
-
-        for(const sibling of this.node.parent.children){
-            if(sibling === this.node) continue;
-
-            const siblingNode = sibling.getComponent(QuestionBox);
-            if(siblingNode.node.y === this.node.y && siblingNode.node.x < this.node.x){
-                count++;
-            }
-        }
-        return count;
-    }
-
     private spawnMoney() {
         if(!this.questionMoney) return;
 
@@ -87,16 +73,13 @@ export default class QuestionBox extends cc.Component {
         if(!this.questionMushroom || !this.questionRandom) return;
         cc.audioEngine.playEffect(this.mushroomBGM, false);
 
-        const cnt = this.checkAdjacentBox();
-        const moveX = (cnt+1) * (this.node.width) * 1.5 + 20;
-        const moveTime = moveX / 50;
-
         const mushroomPrefab = isRandom ? this.questionRandom : this.questionMushroom;
         const mushroomNode = cc.instantiate(mushroomPrefab);
         const mushroomRigidBody = mushroomNode.getComponent(cc.RigidBody);
         this.node.parent.addChild(mushroomNode);
 
         // Initialize the speed of the node
+        mushroomRigidBody.linearDamping = 0;
         mushroomRigidBody.gravityScale = 0;
         mushroomRigidBody.linearVelocity = cc.v2(0, 0);
 
@@ -106,10 +89,9 @@ export default class QuestionBox extends cc.Component {
         cc.tween(mushroomNode)
             .by(0.4, {position: cc.v3(0, height, 0)}, {easing: 'cubicOut'})
             .delay(1.0)
-            .by(moveTime, {position: cc.v3(-moveX, 0, 0)}, {easing: 'cubicOut'})
             .call(() => {
                 mushroomRigidBody.gravityScale = 1;
-                mushroomRigidBody.linearVelocity = cc.v2(0, -100);
+                mushroomRigidBody.linearVelocity = cc.v2(200, 0);
             })
             .start();
 
