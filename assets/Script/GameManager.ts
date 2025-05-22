@@ -132,12 +132,13 @@ export default class GameManager extends cc.Component {
     private async useAccessUser(){
         const currentUser = firebase.auth().currentUser.uid;
         const currentUserData = await AccessUser.getUser(currentUser);
-        let newLevel = Math.max(currentUserData.userlevel + 1, 2) || 0;
+        let newLevel = Math.min(currentUserData.userlevel + 1, 2) || 0;
         let newScore = Math.max(this.scoreCount, currentUserData.highscore || 0);
 
         const data: Partial<UserData> = {
             usermoney: this.moneyCount,
             userlevel: newLevel,
+            userlife: this.lifeCount,
             highscore: newScore,
         }
 
@@ -192,7 +193,7 @@ export default class GameManager extends cc.Component {
         this.unschedule(this.timer);
         cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
         cc.sys.localStorage.setItem("playerScore", this.scoreCount.toString());
-        cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
+        cc.sys.localStorage.setItem("playerLife", "5");
 
         if(this.player && this.player.isValid){
             const playerRigidBody = this.player.getComponent(cc.RigidBody);

@@ -3,6 +3,7 @@ export interface UserData {
     username: string;
     usermoney?: number;
     userlevel?: number;
+    userlife?: number;
     highscore?: number;
     createdAt?: any;
 }
@@ -16,6 +17,7 @@ export default class AccessUser {
             username: username,
             usermoney: initialMoney,
             userlevel: initialLevel,
+            userlife: 5,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         };
 

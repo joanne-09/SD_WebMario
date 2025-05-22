@@ -32,6 +32,7 @@ export default class Menu extends cc.Component {
         this.userData = await AccessUser.getUser(userId);
         if (this.userData) {
             this.moneyCount = this.userData.usermoney || 0;
+            this.lifeCount = this.userData.userlife || 5;
             this.scoreCount = this.userData.highscore || 0;
             this.updateUI();
         }
@@ -51,7 +52,7 @@ export default class Menu extends cc.Component {
 
         cc.sys.localStorage.setItem("level", lvl.toString());
         cc.sys.localStorage.setItem("playerMoney", this.moneyCount.toString());
-        cc.sys.localStorage.setItem("playerLife", "5");
+        cc.sys.localStorage.setItem("playerLife", this.lifeCount.toString());
         cc.sys.localStorage.setItem("playerScore", "0");
 
         cc.director.loadScene("GameStart");
