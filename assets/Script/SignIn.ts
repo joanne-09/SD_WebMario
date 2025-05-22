@@ -15,6 +15,7 @@ export default class SignIn extends cc.Component {
 
     onBack () {
         cc.log("Back button clicked");
+        this.stopBGM();
         cc.director.loadScene('Start');
     }
 
@@ -34,23 +35,42 @@ export default class SignIn extends cc.Component {
             return;
         }
 
+        this.stopBGM();
         this.signInFirebase(email, password);
     }
 
     onLoad () {
         if(this.BackButton) {
-            this.stopBGM();
             this.BackButton.node.on('click', this.onBack, this);
         }else{
             cc.warn("BackButton is null");
         }
 
         if(this.EnterButton) {
-            this.stopBGM();
             this.EnterButton.node.on('click', this.onEnter, this);
         }else{
             cc.warn("EnterButton is null");
         }
+
+        // enter button listener
+        this.EnterButton.node.on(cc.Node.EventType.MOUSE_ENTER, () => {
+            cc.log("Enter button mouse enter");
+            this.EnterButton.node.getChildByName("Background").color = cc.color(226, 136, 86);
+        }, this);
+        this.EnterButton.node.on(cc.Node.EventType.MOUSE_LEAVE, () => {
+            cc.log("Enter button mouse leave");
+            this.EnterButton.node.getChildByName("Background").color = cc.color(228, 102, 31);
+        }, this);
+
+        // back button listener
+        this.BackButton.node.on(cc.Node.EventType.MOUSE_ENTER, () => {
+            cc.log("Back button mouse enter");
+            this.BackButton.node.getChildByName("Background").color = cc.color(226, 136, 86);
+        }, this);
+        this.BackButton.node.on(cc.Node.EventType.MOUSE_LEAVE, () => {
+            cc.log("Back button mouse leave");
+            this.BackButton.node.getChildByName("Background").color = cc.color(228, 102, 31);
+        }, this);
     }
 
     stopBGM () {

@@ -55,6 +55,26 @@ export default class SignUp extends cc.Component {
         }else{
             cc.warn("EnterButton is null");
         }
+
+        // enter button listener
+        this.EnterButton.node.on(cc.Node.EventType.MOUSE_ENTER, () => {
+            cc.log("Enter button mouse enter");
+            this.EnterButton.node.getChildByName("Background").color = cc.color(226, 136, 86);
+        }, this);
+        this.EnterButton.node.on(cc.Node.EventType.MOUSE_LEAVE, () => {
+            cc.log("Enter button mouse leave");
+            this.EnterButton.node.getChildByName("Background").color = cc.color(228, 102, 31);
+        }, this);
+
+        // back button listener
+        this.BackButton.node.on(cc.Node.EventType.MOUSE_ENTER, () => {
+            cc.log("Back button mouse enter");
+            this.BackButton.node.getChildByName("Background").color = cc.color(226, 136, 86);
+        }, this);
+        this.BackButton.node.on(cc.Node.EventType.MOUSE_LEAVE, () => {
+            cc.log("Back button mouse leave");
+            this.BackButton.node.getChildByName("Background").color = cc.color(228, 102, 31);
+        }, this);
     }
 
     stopBGM () {

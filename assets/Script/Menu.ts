@@ -214,6 +214,12 @@ export default class Menu extends cc.Component {
         if(this.leaderboardBtn) {
             this.leaderboardBtn.node.on('click', () => {
                 cc.log("Leaderboard button clicked");
+
+                cc.tween(this.leaderboardBtn.node)
+                    .to(0.05, { scale: 1.2 })
+                    .to(0.05, { scale: 1 })
+                    .start();
+
                 this.leaderboardActive = !this.leaderboardActive;
                 if(this.leaderboardActive) this.showLeaderboard();
                 else this.hideLeaderboard();
