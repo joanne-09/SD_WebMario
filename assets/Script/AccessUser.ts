@@ -18,6 +18,7 @@ export default class AccessUser {
             usermoney: initialMoney,
             userlevel: initialLevel,
             userlife: 5,
+            createdAt: firebase.firestore.ServerValue.TIMESTAMP,
         };
 
         try {
