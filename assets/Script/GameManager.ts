@@ -165,9 +165,8 @@ export default class GameManager extends cc.Component {
         cc.audioEngine.stopMusic();
         cc.audioEngine.playEffect(this.winBGM, false);
 
-        this.addScore(5000);
-
         this.unschedule(this.timer);
+        this.addScore(50*this.timeCount);
         await this.useAccessUser();
 
         if(this.player && this.player.isValid){
@@ -187,6 +186,8 @@ export default class GameManager extends cc.Component {
         // set level complete node to middle of camera
         const levelCompleteNode = cc.instantiate(this.levelComplete);
         this.node.addChild(levelCompleteNode);
+        levelCompleteNode.getChildByName("ScoreAdded").getChildByName("time").getComponent(cc.Label).string = `${this.timeCount}`;
+        levelCompleteNode.getChildByName("ScoreAdded").getChildByName("score").getComponent(cc.Label).string = `${50*this.timeCount}`;
         const camera = cc.find("Canvas/Main Camera").getComponent(cc.Camera);
         const target = camera.node.position;
         levelCompleteNode.setPosition(target.x, -600, 0);

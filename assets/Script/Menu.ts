@@ -188,6 +188,7 @@ export default class Menu extends cc.Component {
                 cc.log("Logout button clicked");
                 firebase.auth().signOut().then(() => {
                     cc.log("User signed out");
+                    this.stopBGM();
                     cc.director.loadScene('Start');
                 }).catch((error) => {
                     cc.error("Error signing out: ", error);
