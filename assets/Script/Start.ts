@@ -1,4 +1,4 @@
-import { config } from "./FirebaseService";
+// import { config } from "./FirebaseService";
 const {ccclass, property} = cc._decorator;
 
 @ccclass("Start")
