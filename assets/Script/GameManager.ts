@@ -1,5 +1,6 @@
 import Player from "./Player";
 import AccessUser, { UserData } from "./AccessUser";
+import AccessLeaderboard, {BoardData} from "./AccessLeaderboard";
 const { ccclass, property } = cc._decorator;
 
 enum PlayerDirection {
@@ -143,6 +144,14 @@ export default class GameManager extends cc.Component {
         }
 
         await AccessUser.updateUser(currentUser, data);
+
+        if(newScore > currentUserData.highscore){
+            const boardData: BoardData = {
+                playerscore: newScore,
+                playername: currentUserData.username,
+            }
+            await AccessLeaderboard.updateLeaderboard(currentUser, boardData);
+        }
     }
 
     backtoMenu(){

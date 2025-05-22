@@ -1,4 +1,5 @@
 import AccessUser, {UserData} from "./AccessUser";
+import AccessLeaderboard, {BoardData} from "./AccessLeaderboard";
 const {ccclass, property} = cc._decorator;
 
 @ccclass("Menu")
@@ -12,6 +13,8 @@ export default class Menu extends cc.Component {
     level2: cc.Button = null;
     @property(cc.Button)
     logout: cc.Button = null;
+    @property(cc.Button)
+    leaderboardBtn: cc.Button = null;
 
     @property(cc.Label)
     username: cc.Label = null;
@@ -22,11 +25,19 @@ export default class Menu extends cc.Component {
     @property(cc.Label)
     score: cc.Label = null;
 
+    @property(cc.Node)
+    leaderboard: cc.Node = null;
+    @property(cc.Node)
+    leaderList: cc.Node = null;
+
     private moneyCount: number = 0;
     private lifeCount: number = 5;
     private scoreCount: number = 0;
 
     private userData: UserData = null;
+    private leaderboardData: BoardData[] = [];
+
+    private leaderboardActive: boolean = false;
 
     private async loadUserData(userId: string) {
         this.userData = await AccessUser.getUser(userId);
@@ -36,6 +47,52 @@ export default class Menu extends cc.Component {
             this.scoreCount = this.userData.highscore || 0;
             this.updateUI();
         }
+    }
+
+    private loadLeaderboard(){
+        AccessLeaderboard.getLeaderboard().then((data: BoardData[]) => {
+            this.leaderboardData = data;
+            this.setLeaderboard();
+        });
+        if (this.leaderboardData) {
+            console.log("Leaderboard loaded successfully");
+        } else {
+            console.warn("No leaderboard data found");
+        }
+    }
+
+    private setLeaderboard(){
+        for(let i=0; i<this.leaderboardData.length; i++){
+            const entry = this.leaderboardData[i];
+            const rowNode = this.leaderList.getChildByName(`Row${i+1}`);
+            if(rowNode){
+                const usernameLabel = rowNode.getChildByName("name").getComponent(cc.Label);
+                const scoreLabel = rowNode.getChildByName("score").getComponent(cc.Label);
+                if(usernameLabel && scoreLabel){
+                    usernameLabel.string = entry.playername.toUpperCase();
+                    scoreLabel.string = entry.playerscore.toString().padStart(7, '0');
+                }
+            }
+        }
+    }
+
+    private showLeaderboard() {
+        this.leaderboard.active = true;
+        this.leaderList.active = true;
+
+        for(let i=0; i<10; i++){
+            const rowNode = this.leaderList.getChildByName(`Row${i+1}`);
+            if(i < this.leaderboardData.length){
+                rowNode.active = true;
+            }else {
+                rowNode.active = false;
+            }
+        }
+    }
+
+    private hideLeaderboard() {
+        this.leaderboard.active = false;
+        this.leaderList.active = false;
     }
 
     private updateUI() {
@@ -106,8 +163,8 @@ export default class Menu extends cc.Component {
 
     // Life cycle method
     onLoad() {
+        // link level buttons
         if(this.level1) {
-
             this.level1.node.on('click', () => {
                 cc.log("Level 1 button clicked");
                 this.startLevel(1);
@@ -125,6 +182,7 @@ export default class Menu extends cc.Component {
             cc.warn("Level 2 button is null");
         }
 
+        // link logout button
         if(this.logout) {
             this.logout.node.on('click', () => {
                 cc.log("Logout button clicked");
@@ -139,11 +197,29 @@ export default class Menu extends cc.Component {
             cc.warn("Logout button is null");
         }
 
+        // get user data and update UI
         const currentUser = firebase.auth().currentUser;
         if (currentUser) {
             this.loadUserData(currentUser.uid);
         } else {
             cc.warn("No user is currently signed in");
+        }
+
+        // load leaderboard data
+        this.loadLeaderboard();
+        this.leaderboard.active = false;
+        this.leaderList.active = false;
+
+        // link leaderboard button
+        if(this.leaderboardBtn) {
+            this.leaderboardBtn.node.on('click', () => {
+                cc.log("Leaderboard button clicked");
+                this.leaderboardActive = !this.leaderboardActive;
+                if(this.leaderboardActive) this.showLeaderboard();
+                else this.hideLeaderboard();
+            }, this);
+        } else {
+            cc.warn("Leaderboard button is null");
         }
     }
 
