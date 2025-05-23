@@ -1,4 +1,4 @@
-// import { config } from "./FirebaseService";
+import { config } from "./FirebaseService";
 const {ccclass, property} = cc._decorator;
 
 @ccclass("Start")
@@ -45,6 +45,7 @@ export default class Start extends cc.Component {
     }
 
     start () {
+        const app = firebase.initializeApp(config);
         this.playBGM();
     }
 
