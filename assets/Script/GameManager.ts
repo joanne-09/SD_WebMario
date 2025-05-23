@@ -134,7 +134,8 @@ export default class GameManager extends cc.Component {
         const currentUser = firebase.auth().currentUser.uid;
         const currentUserData = await AccessUser.getUser(currentUser);
         let newLevel = Math.min(currentUserData.userlevel + 1, 2) || 0;
-        let newScore = Math.max(this.scoreCount, currentUserData.highscore || 0);
+        let currentScore = currentUserData.highscore || 0;
+        let newScore = Math.max(this.scoreCount, currentScore);
 
         const data: Partial<UserData> = {
             usermoney: this.moneyCount,
@@ -145,12 +146,12 @@ export default class GameManager extends cc.Component {
 
         await AccessUser.updateUser(currentUser, data);
 
-        if(newScore > currentUserData.highscore){
+        if(newScore > currentScore){
             const boardData: BoardData = {
                 playerscore: newScore,
                 playername: currentUserData.username,
             }
-            await AccessLeaderboard.updateLeaderboard(currentUser, boardData);
+            await AccessLeaderboard.updateUserScore(currentUser, boardData);
         }
     }
 

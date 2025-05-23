@@ -14,7 +14,9 @@ export default class Gameover extends cc.Component {
         const currentUser = firebase.auth().currentUser.uid;
         const currentUserData = await AccessUser.getUser(currentUser);
         const currentLevel = parseInt(cc.sys.localStorage.getItem("level")) || 1;
-        let newLevel = Math.max(currentLevel - 1, currentUserData.userlevel) || 0;
+        let newLevel = currentLevel;
+
+        if(currentLevel < currentUserData.userlevel) newLevel = Math.max(currentLevel - 1, currentUserData.userlevel) || 0;
 
         const data: Partial<UserData> = {
             usermoney: this.moneyCount,

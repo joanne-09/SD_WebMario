@@ -4634,7 +4634,7 @@
         "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": "15Gl3w8K1Au70cpCzfg/an"
   },
   {
@@ -4847,7 +4847,7 @@
         "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": "e60rpHvkpGKrTj7KLUsomG"
   },
   {
@@ -5060,7 +5060,7 @@
         "__uuid__": "58e35ab9-cd38-4221-a81a-8311b5bb051f"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": "960Ta4pVhDioahwvNNYNzm"
   },
   {

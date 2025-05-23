@@ -112,6 +112,7 @@ export default class Enemy extends cc.Component {
                 this.dieTimer = false;
                 this.node.destroy();
             }
+            console.log("Enemy is moving as Shell");
             this.rigidBody.linearVelocity = cc.v2(this.currentSpeed * this.moveDirection, this.rigidBody.linearVelocity.y);
             return;
         }
